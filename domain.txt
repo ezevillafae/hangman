@@ -1,5 +1,0 @@
-- Palabra: Dificultad, Idioma
-- Usuario
-- Sesión: Intentos, Usuario, Palabra, Letras
-- Adivinador
-
