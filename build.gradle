@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'ar.edu.ungs'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 repositories {
     mavenCentral()
@@ -28,4 +28,12 @@ sourceSets {
 
 test {
     useJUnitPlatform()
+}
+
+tasks.named('jar') {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                'Implementation-Version': project.version,
+                'Main-Class': 'ar.edu.ungs.hangman.apps.Starter')
+    }
 }
