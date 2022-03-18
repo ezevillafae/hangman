@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Session {
-    public final static Integer MAX_ATTEMPTS = 5;
+    public final static Integer MAX_TRIES = 5;
     private final String user;
     private final Word word;
     private final Character[] characters;
@@ -61,7 +61,7 @@ public final class Session {
     public void fail() {
         this.fails++;
 
-        if  (this.fails.equals(MAX_ATTEMPTS)) {
+        if  (this.fails.equals(MAX_TRIES)) {
             throw new SessionFinished("game session ended for exceeding the maximum number of failed attempts");
         }
     }

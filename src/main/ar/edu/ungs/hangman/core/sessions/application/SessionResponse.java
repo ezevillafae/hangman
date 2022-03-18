@@ -9,13 +9,13 @@ public final class SessionResponse {
     private final String user;
     private final String word;
     private final Character[] characters;
-    private Integer failoverTries;
+    private final Integer fails;
 
-    public SessionResponse(String user, String word, Character[] characters, Integer failoverTries) {
+    public SessionResponse(String user, String word, Character[] characters, Integer fails) {
         this.user = user;
         this.word = word;
         this.characters = characters;
-        this.failoverTries = failoverTries;
+        this.fails = fails;
     }
 
     public static SessionResponse map(Session session) {
@@ -37,8 +37,8 @@ public final class SessionResponse {
         return characters;
     }
 
-    public Integer failoverTries() {
-        return failoverTries;
+    public Integer fails() {
+        return fails;
     }
 
     @Override
@@ -49,12 +49,12 @@ public final class SessionResponse {
         return Objects.equals(user,
                               that.user) && Objects.equals(
                 word, that.word) && Arrays.equals(characters, that.characters) && Objects.equals(
-                failoverTries, that.failoverTries);
+                fails, that.fails);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(user, word, failoverTries);
+        int result = Objects.hash(user, word, fails);
         result = 31 * result + Arrays.hashCode(characters);
         return result;
     }
@@ -65,7 +65,7 @@ public final class SessionResponse {
                 "user='" + user + '\'' +
                 ", word='" + word + '\'' +
                 ", characters=" + Arrays.toString(characters) +
-                ", failoverTries=" + failoverTries +
+                ", fails=" + fails +
                 '}';
     }
 }

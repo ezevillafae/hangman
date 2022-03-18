@@ -1,6 +1,6 @@
 package ar.edu.ungs.hangman.apps.shared;
 
-import ar.edu.ungs.hangman.core.sessions.application.attempt.SessionAttempter;
+import ar.edu.ungs.hangman.core.sessions.application.tries.SessionTryer;
 import ar.edu.ungs.hangman.core.sessions.application.create.SessionCreator;
 import ar.edu.ungs.hangman.core.sessions.application.find.SessionFinder;
 import ar.edu.ungs.hangman.core.sessions.domain.SessionRepository;
@@ -14,7 +14,7 @@ public abstract class Application {
     protected final WordRandomPicker wordRandomPicker;
 
     private final SessionRepository sessionRepository;
-    protected final SessionAttempter sessionAttempter;
+    protected final SessionTryer sessionTryer;
     protected final SessionCreator sessionCreator;
     protected final SessionFinder sessionFinder;
 
@@ -23,7 +23,7 @@ public abstract class Application {
         this.wordRandomPicker = new WordRandomPicker(wordRepository);
 
         this.sessionRepository = new InMemorySessionRepository();
-        this.sessionAttempter = new SessionAttempter(sessionRepository);
+        this.sessionTryer = new SessionTryer(sessionRepository);
         this.sessionCreator = new SessionCreator(sessionRepository, wordRandomPicker);
         this.sessionFinder = new SessionFinder(sessionRepository);
     }

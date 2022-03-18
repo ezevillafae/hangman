@@ -1,15 +1,15 @@
-package ar.edu.ungs.hangman.core.sessions.application.attempt;
+package ar.edu.ungs.hangman.core.sessions.application.tries;
 
 import ar.edu.ungs.hangman.core.sessions.domain.DomainSessionFinder;
 import ar.edu.ungs.hangman.core.sessions.domain.Session;
 import ar.edu.ungs.hangman.core.sessions.domain.SessionFinished;
 import ar.edu.ungs.hangman.core.sessions.domain.SessionRepository;
 
-public final class SessionAttempter {
+public final class SessionTryer {
     private final DomainSessionFinder finder;
     private final SessionRepository repository;
 
-    public SessionAttempter(SessionRepository repository) {
+    public SessionTryer(SessionRepository repository) {
         this.finder = new DomainSessionFinder(repository);
         this.repository = repository;
     }
@@ -21,21 +21,19 @@ public final class SessionAttempter {
 
         session.add(character, positions);
 
-        boolean isFailedAttempt = isFailedAttempt(positions);
-
-        ensureAttemptIsFail(session, isFailedAttempt);
+        ensureTryIsFail(session, isFailedTry(positions));
 
         ensureSessionIsComplete(session);
 
         this.repository.save(session);
     }
 
-    private boolean isFailedAttempt(Integer[] positions) {
+    private boolean isFailedTry(Integer[] positions) {
         return positions.length > 0;
     }
 
-    private void ensureAttemptIsFail(Session session, boolean isFailedAttempt) {
-        if (isFailedAttempt) {
+    private void ensureTryIsFail(Session session, boolean isFailedTry) {
+        if (isFailedTry) {
             session.fail();
         }
     }
