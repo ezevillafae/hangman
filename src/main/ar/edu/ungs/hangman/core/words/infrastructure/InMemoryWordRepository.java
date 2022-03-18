@@ -37,5 +37,11 @@ public final class InMemoryWordRepository implements WordRepository {
 
     private void presetData() {
         this.words.add(new Word("nivel", Language.SPANISH, Difficult.EASY));
+        this.words.add(new Word("estrategia", Language.SPANISH, Difficult.MEDIUM));
+        this.words.add(new Word("encuentro", Language.SPANISH, Difficult.MEDIUM));
+        this.words.add(new Word("con", Language.SPANISH, Difficult.EASY));
+        this.words.add(new Word("para", Language.SPANISH, Difficult.EASY));
+        this.words.add(new Word("cruz", Language.SPANISH, Difficult.EASY));
+        this.words.add(new Word("listo", Language.SPANISH, Difficult.EASY));
     }
 }

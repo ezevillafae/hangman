@@ -19,11 +19,11 @@ public final class Starter {
     }
 
     private static void ensureApplicationExists(String[] args) {
-        if (args[0] == null || args[0].isEmpty()){
+        if (args[0] == null || args[0].isEmpty()) {
             throw new RuntimeException("the application not selected");
         }
 
-        if (!applications.containsKey(args[0])){
+        if (!applications.containsKey(args[0])) {
             throw new RuntimeException(String.format("the application <%s> not exists", args[0]));
         }
     }

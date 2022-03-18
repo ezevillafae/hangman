@@ -13,6 +13,10 @@ public final class Word {
         this.difficult = difficult;
     }
 
+    public Integer length() {
+        return value.length();
+    }
+
     public String value() {
         return value;
     }
