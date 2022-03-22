@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ar.edu.ungs.hangman.core.sessions.application.create.SessionCreatorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-03-22T22:33:23" hostname="laptop" time="0.868">
-  <properties/>
-  <testcase name="should_create_session()" classname="ar.edu.ungs.hangman.core.sessions.application.create.SessionCreatorTest" time="0.868"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
