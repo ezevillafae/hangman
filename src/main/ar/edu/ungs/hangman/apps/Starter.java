@@ -4,18 +4,28 @@ import ar.edu.ungs.hangman.apps.cli.CliApplication;
 import ar.edu.ungs.hangman.apps.forms.FormsApplication;
 import ar.edu.ungs.hangman.apps.shared.Application;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
 public final class Starter {
-    private final static Map<String, Application> applications = applications();
+    private final static Map<String, Class<? extends Application>> applications = applications();
 
     public static void main(String[] args) {
         ensureApplicationExists(args);
 
         String applicationName = args[0];
 
-        applications.get(applicationName).run();
+        runApplication(applicationName);
+    }
+
+    private static void runApplication(String applicationName) {
+        try {
+            applications.get(applicationName).getConstructor().newInstance().run();
+        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException error){
+            throw new RuntimeException(String.format("can not run <%s> application", applicationName));
+        }
     }
 
     private static void ensureApplicationExists(String[] args) {
@@ -28,10 +38,10 @@ public final class Starter {
         }
     }
 
-    private static HashMap<String, Application> applications() {
-        return new HashMap<String, Application>() {{
-            put("cli", new CliApplication());
-            put("forms", new FormsApplication());
+    private static HashMap<String, Class<? extends Application>> applications() {
+        return new HashMap<>() {{
+            put("cli", CliApplication.class);
+            put("forms", FormsApplication.class);
         }};
     }
 }

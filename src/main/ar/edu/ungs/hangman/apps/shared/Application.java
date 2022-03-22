@@ -23,7 +23,7 @@ public abstract class Application {
         this.wordRandomPicker = new WordRandomPicker(wordRepository);
 
         this.sessionRepository = new InMemorySessionRepository();
-        this.sessionTryer = new SessionTryer(sessionRepository);
+        this.sessionTryer = new SessionTryer();
         this.sessionCreator = new SessionCreator(sessionRepository, wordRandomPicker);
         this.sessionFinder = new SessionFinder(sessionRepository);
     }
