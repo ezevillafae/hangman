@@ -7,8 +7,8 @@ import ar.edu.ungs.hangman.core.sessions.domain.SessionRepository;
 public final class SessionFinder {
     private final DomainSessionFinder finder;
 
-    public SessionFinder(SessionRepository repository) {
-        this.finder = new DomainSessionFinder(repository);
+    public SessionFinder(DomainSessionFinder domainSessionFinder) {
+        this.finder = domainSessionFinder;
     }
 
     public SessionResponse find(String user) {

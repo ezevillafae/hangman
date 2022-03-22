@@ -3,10 +3,10 @@ package ar.edu.ungs.hangman.core.words.domain;
 import java.util.List;
 import java.util.Random;
 
-public final class WordRandomPicker {
+public final class DomainWordRandomPicker {
     private final WordRepository repository;
 
-    public WordRandomPicker(WordRepository repository) {
+    public DomainWordRandomPicker(WordRepository repository) {
         this.repository = repository;
     }
 

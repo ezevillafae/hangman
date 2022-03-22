@@ -5,19 +5,19 @@ import ar.edu.ungs.hangman.core.sessions.domain.SessionRepository;
 import ar.edu.ungs.hangman.core.words.domain.Difficult;
 import ar.edu.ungs.hangman.core.words.domain.Language;
 import ar.edu.ungs.hangman.core.words.domain.Word;
-import ar.edu.ungs.hangman.core.words.domain.WordRandomPicker;
+import ar.edu.ungs.hangman.core.words.domain.DomainWordRandomPicker;
 
 public final class SessionCreator {
     private final SessionRepository repository;
-    private final WordRandomPicker wordRandomPicker;
+    private final DomainWordRandomPicker domainWordRandomPicker;
 
-    public SessionCreator(SessionRepository repository, WordRandomPicker wordRandomPicker) {
+    public SessionCreator(SessionRepository repository, DomainWordRandomPicker domainWordRandomPicker) {
         this.repository = repository;
-        this.wordRandomPicker = wordRandomPicker;
+        this.domainWordRandomPicker = domainWordRandomPicker;
     }
 
     public void create(String user, Difficult difficult, Language language) {
-        Word word = wordRandomPicker.pick(difficult, language);
+        Word word = domainWordRandomPicker.pick(difficult, language);
 
         Session session = new Session(user, word);
 

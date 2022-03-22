@@ -3,7 +3,9 @@ package ar.edu.ungs.hangman.core.sessions.domain;
 import ar.edu.ungs.hangman.core.words.domain.Word;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public final class Session {
     public final static Integer MAX_TRIES = 5;
@@ -68,5 +70,31 @@ public final class Session {
 
     public Boolean isComplete(){
         return completedWords == word.value().length();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Session session = (Session) o;
+        return Objects.equals(user, session.user) && Objects.equals(word, session.word) && Arrays.equals(characters, session.characters) && Objects.equals(fails, session.fails) && Objects.equals(completedWords, session.completedWords);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(user, word, fails, completedWords);
+        result = 31 * result + Arrays.hashCode(characters);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Session{" +
+                "user='" + user + '\'' +
+                ", word=" + word +
+                ", characters=" + Arrays.toString(characters) +
+                ", fails=" + fails +
+                ", completedWords=" + completedWords +
+                '}';
     }
 }

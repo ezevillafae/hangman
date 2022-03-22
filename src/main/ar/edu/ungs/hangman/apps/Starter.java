@@ -40,7 +40,7 @@ public final class Starter {
     private static HashMap<String, Class<? extends Application>> applications() {
         return new HashMap<>() {{
             put("cli", CliApplication.class);
-            put("forms", FormsApplication.class);
+            put("swing", FormsApplication.class);
         }};
     }
 }
