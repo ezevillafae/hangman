@@ -4,7 +4,6 @@ import ar.edu.ungs.hangman.apps.cli.CliApplication;
 import ar.edu.ungs.hangman.apps.forms.FormsApplication;
 import ar.edu.ungs.hangman.apps.shared.Application;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,10 +16,10 @@ public final class Starter {
 
         String applicationName = args[0];
 
-        runApplication(applicationName);
+        run(applicationName);
     }
 
-    private static void runApplication(String applicationName) {
+    private static void run(String applicationName) {
         try {
             applications.get(applicationName).getConstructor().newInstance().run();
         } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException error){
