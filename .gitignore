@@ -8,6 +8,10 @@
 # BlueJ files
 *.ctxt
 
+# Build folder
+/build
+
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
