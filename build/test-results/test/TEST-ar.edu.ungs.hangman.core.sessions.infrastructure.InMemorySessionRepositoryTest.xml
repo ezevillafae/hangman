@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ar.edu.ungs.hangman.core.sessions.infrastructure.InMemorySessionRepositoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-03-22T22:48:57" hostname="laptop" time="0.007">
-  <properties/>
-  <testcase name="should_save_session()" classname="ar.edu.ungs.hangman.core.sessions.infrastructure.InMemorySessionRepositoryTest" time="0.003"/>
-  <testcase name="should_find_session_by_user()" classname="ar.edu.ungs.hangman.core.sessions.infrastructure.InMemorySessionRepositoryTest" time="0.003"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
