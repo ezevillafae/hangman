@@ -22,7 +22,7 @@ public final class SessionResponse {
         return new SessionResponse(session.user(),
                                    session.word().value(),
                                    session.characters(),
-                                   session.attempts());
+                                   session.fails());
     }
 
     public String user() {

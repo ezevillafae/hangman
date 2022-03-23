@@ -43,7 +43,7 @@ public final class CliApplication extends Application {
                 System.out.println("Enter letter: ");
                 Character character = reader.readLine().charAt(0);
 
-                sessionTryer.attempt(user, character);
+                sessionTryer.execute(user, character);
             }
 
 

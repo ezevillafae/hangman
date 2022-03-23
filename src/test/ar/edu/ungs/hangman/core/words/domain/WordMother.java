@@ -22,4 +22,8 @@ public final class WordMother {
     public static List<Word> empty() {
         return Collections.emptyList();
     }
+
+    public static Word random(String value) {
+        return new Word(value, LanguageMother.random(), DifficultMother.random());
+    }
 }

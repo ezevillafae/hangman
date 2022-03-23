@@ -25,9 +25,9 @@ public abstract class Application {
         this.domainWordRandomPicker = new DomainWordRandomPicker(wordRepository);
 
         this.sessionRepository = new InMemorySessionRepository();
-        this.sessionTryer = new SessionTryer();
-        this.sessionCreator = new SessionCreator(sessionRepository, domainWordRandomPicker);
         this.domainSessionFinder = new DomainSessionFinder(sessionRepository);
+        this.sessionTryer = new SessionTryer(domainSessionFinder, sessionRepository);
+        this.sessionCreator = new SessionCreator(sessionRepository, domainWordRandomPicker);
         this.sessionFinder = new SessionFinder(domainSessionFinder);
     }
 
