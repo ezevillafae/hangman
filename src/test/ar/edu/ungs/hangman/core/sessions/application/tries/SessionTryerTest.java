@@ -26,7 +26,7 @@ class SessionTryerTest {
     }
 
     @Test
-    void should_do_successful_try() {
+    void when_choose_successful_letter_should_try() {
         Session session = SessionMother.random();
         Character character = pickValidCharacter(session);
         int fails = session.fails();
@@ -41,7 +41,7 @@ class SessionTryerTest {
 
 
     @Test
-    void should_do_fail_try() {
+    void when_choose_fail_letter_should_failed_try() {
         String word = "test";
         Session session = SessionMother.build(WordMother.random(word));
         int fails = session.fails();
@@ -55,7 +55,7 @@ class SessionTryerTest {
     }
 
     @Test
-    void should_throws_session_finished() {
+    void when_choose_fail_letter_and_hasnt_fail_tries_should_throws_session_finished() {
         String word = "test";
         Integer fails = 3;
         Session session = SessionMother.build(WordMother.random(word), fails);
