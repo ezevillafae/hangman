@@ -5,6 +5,8 @@ plugins {
 group 'ar.edu.ungs'
 version '1.0'
 
+sourceCompatibility = 1.8
+
 repositories {
     mavenCentral()
 }
