@@ -1,5 +1,6 @@
 package ar.edu.ungs.hangman.core.words.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,10 +14,12 @@ public final class WordMother {
     }
 
     public static List<Word> randoms(Language language, Difficult difficult) {
-        return List.of(WordMother.random(language, difficult),
+        List<Word> values = new ArrayList<>();
+        Collections.addAll(values, WordMother.random(language, difficult),
                 WordMother.random(language, difficult),
                 WordMother.random(language, difficult),
                 WordMother.random(language, difficult));
+        return values;
     }
 
     public static List<Word> empty() {
