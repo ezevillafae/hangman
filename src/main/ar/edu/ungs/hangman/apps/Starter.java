@@ -38,7 +38,7 @@ public final class Starter {
     }
 
     private static HashMap<String, Class<? extends Application>> applications() {
-        return new HashMap<>() {{
+        return new HashMap<String, Class<? extends Application>>() {{
             put("cli", CliApplication.class);
             put("forms", FormsApplication.class);
         }};
