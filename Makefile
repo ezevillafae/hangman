@@ -14,6 +14,6 @@ test:
 start-cli:
 	@./gradlew :run --args='cli'
 
-.PHONY: start-backoffice_frontend
-start-forms:
-	@./gradlew :run --args='forms'
+.PHONY: start-swing
+start-swing:
+	@./gradlew :run --args='swing'

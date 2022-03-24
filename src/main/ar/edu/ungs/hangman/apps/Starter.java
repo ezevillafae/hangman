@@ -1,8 +1,7 @@
 package ar.edu.ungs.hangman.apps;
 
 import ar.edu.ungs.hangman.apps.cli.CliApplication;
-import ar.edu.ungs.hangman.apps.forms.FormsApplication;
-import ar.edu.ungs.hangman.apps.shared.Application;
+import ar.edu.ungs.hangman.apps.swing.SwingApplication;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -40,7 +39,7 @@ public final class Starter {
     private static HashMap<String, Class<? extends Application>> applications() {
         return new HashMap<String, Class<? extends Application>>() {{
             put("cli", CliApplication.class);
-            put("forms", FormsApplication.class);
+            put("swing", SwingApplication.class);
         }};
     }
 }

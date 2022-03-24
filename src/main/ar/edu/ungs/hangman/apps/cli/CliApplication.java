@@ -1,6 +1,6 @@
 package ar.edu.ungs.hangman.apps.cli;
 
-import ar.edu.ungs.hangman.apps.shared.Application;
+import ar.edu.ungs.hangman.apps.Application;
 
 public final class CliApplication extends Application {
 	@Override
