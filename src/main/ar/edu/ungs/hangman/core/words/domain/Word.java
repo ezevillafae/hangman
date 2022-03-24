@@ -3,51 +3,57 @@ package ar.edu.ungs.hangman.core.words.domain;
 import java.util.Objects;
 
 public final class Word {
-    private final String value;
-    private final Language language;
-    private final Difficult difficult;
+	private final String value;
+	private final Language language;
+	private final Difficult difficult;
 
-    public Word(String value, Language language, Difficult difficult) {
-        this.value = value;
-        this.language = language;
-        this.difficult = difficult;
-    }
+	public Word(String value) {
+		this.value = value;
+		this.language = Language.DEFAULT;
+		this.difficult = Difficult.DEFAULT;
+	}
 
-    public Integer length() {
-        return value.length();
-    }
+	public Word(String value, Language language, Difficult difficult) {
+		this.value = value;
+		this.language = language;
+		this.difficult = difficult;
+	}
 
-    public String value() {
-        return value;
-    }
+	public Integer length() {
+		return value.length();
+	}
 
-    public Language language() {
-        return language;
-    }
+	public String value() {
+		return value;
+	}
 
-    public Difficult difficult() {
-        return difficult;
-    }
+	public Language language() {
+		return language;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Word word = (Word) o;
-        return Objects.equals(value, word.value) && language == word.language && difficult == word.difficult;
-    }
+	public Difficult difficult() {
+		return difficult;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(value, language, difficult);
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Word word = (Word) o;
+		return Objects.equals(value, word.value) && language == word.language && difficult == word.difficult;
+	}
 
-    @Override
-    public String toString() {
-        return "Word{" +
-                "value='" + value + '\'' +
-                ", language=" + language +
-                ", difficult=" + difficult +
-                '}';
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(value, language, difficult);
+	}
+
+	@Override
+	public String toString() {
+		return "Word{" +
+				"value='" + value + '\'' +
+				", language=" + language +
+				", difficult=" + difficult +
+				'}';
+	}
 }

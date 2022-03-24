@@ -14,6 +14,14 @@ public final class Session {
     private Integer fails;
     private Integer completedCharacters;
 
+    public Session(String user, Integer wordLength) {
+        this.user = user;
+        this.word = null;
+        this.characters = new Character[wordLength];
+        this.fails = 0;
+        this.completedCharacters = 0;
+    }
+
     public Session(String user, Word word) {
         this.user = user;
         this.word = word;
