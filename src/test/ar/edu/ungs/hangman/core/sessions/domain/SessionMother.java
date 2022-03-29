@@ -8,6 +8,10 @@ import java.util.Collections;
 import java.util.List;
 
 public final class SessionMother {
+	public static Session build(String user, Word word){
+		return new Session(user, word);
+	}
+
 	public static Session build(Word word) {
 		return new Session("user", word);
 	}

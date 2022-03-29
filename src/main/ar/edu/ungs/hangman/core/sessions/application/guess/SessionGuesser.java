@@ -44,7 +44,7 @@ public final class SessionGuesser {
 
 	private static List<Character> consonants() {
 		List<Character> values = new ArrayList<>();
-		Collections.addAll(values, 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'P', 'Q', 'R', 'S', 'T', 'V', 'X', 'Z', 'W', 'Y');
+		Collections.addAll(values, 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'X', 'Z', 'W', 'Y');
 		return values;
 	}
 }

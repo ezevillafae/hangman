@@ -27,7 +27,16 @@ final class SessionGuesserTest {
 
 	@Test
 	void should_guess_the_word() {
+		/*
+		String expectedWord = "ae";
+		Session sessionExpected = SessionMother.build("machine",new Word(expectedWord));
 
+		when(sessionFinder.find("machine")).thenReturn(sessionExpected);
+
+		String actual = guesser.guess().word();
+
+		assertEquals(expectedWord, actual);
+		 */
 	}
 
 	@Test
