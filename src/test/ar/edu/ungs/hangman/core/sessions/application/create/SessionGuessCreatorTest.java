@@ -3,6 +3,8 @@ package ar.edu.ungs.hangman.core.sessions.application.create;
 import ar.edu.ungs.hangman.core.sessions.domain.Session;
 import ar.edu.ungs.hangman.core.sessions.domain.SessionMother;
 import ar.edu.ungs.hangman.core.sessions.domain.SessionRepository;
+import ar.edu.ungs.hangman.core.words.domain.Difficult;
+import ar.edu.ungs.hangman.core.words.domain.Language;
 import ar.edu.ungs.hangman.core.words.domain.Word;
 import ar.edu.ungs.hangman.core.words.domain.WordMother;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,10 +26,10 @@ final class SessionGuessCreatorTest {
 
 	@Test
 	void should_create_guess_session() {
-		String randomWord = WordMother.random().value();
-		Session expected = SessionMother.build("machine",new Word(randomWord));
+		Word randomWord = WordMother.random(Language.DEFAULT, Difficult.DEFAULT);
+		Session expected = SessionMother.build("machine", randomWord);
 
-		this.creator.create(randomWord);
+		this.creator.create(randomWord.value());
 
 		verify(repository, times(1)).save(expected);
 	}
