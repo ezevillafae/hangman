@@ -1,4 +1,4 @@
-package ar.edu.ungs.hangman.core.sessions.infrastructure;
+package ar.edu.ungs.hangman.core.sessions.infrastructure.persistence.inmemory;
 
 import ar.edu.ungs.hangman.core.sessions.domain.Session;
 import ar.edu.ungs.hangman.core.sessions.domain.SessionRepository;

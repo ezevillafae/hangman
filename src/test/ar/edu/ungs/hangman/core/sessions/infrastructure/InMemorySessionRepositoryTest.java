@@ -2,6 +2,7 @@ package ar.edu.ungs.hangman.core.sessions.infrastructure;
 
 import ar.edu.ungs.hangman.core.sessions.domain.Session;
 import ar.edu.ungs.hangman.core.sessions.domain.SessionMother;
+import ar.edu.ungs.hangman.core.sessions.infrastructure.persistence.inmemory.InMemorySessionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

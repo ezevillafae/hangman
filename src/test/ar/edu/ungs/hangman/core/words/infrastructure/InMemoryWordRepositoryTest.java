@@ -1,6 +1,7 @@
 package ar.edu.ungs.hangman.core.words.infrastructure;
 
 import ar.edu.ungs.hangman.core.words.domain.*;
+import ar.edu.ungs.hangman.core.words.infrastructure.persistence.inmemory.InMemoryWordRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

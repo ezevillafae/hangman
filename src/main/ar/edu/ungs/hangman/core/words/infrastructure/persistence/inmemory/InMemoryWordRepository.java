@@ -1,4 +1,4 @@
-package ar.edu.ungs.hangman.core.words.infrastructure;
+package ar.edu.ungs.hangman.core.words.infrastructure.persistence.inmemory;
 
 import ar.edu.ungs.hangman.core.words.domain.Difficult;
 import ar.edu.ungs.hangman.core.words.domain.Language;
