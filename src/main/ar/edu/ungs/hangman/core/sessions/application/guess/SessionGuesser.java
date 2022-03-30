@@ -1,8 +1,8 @@
 package ar.edu.ungs.hangman.core.sessions.application.guess;
 
 import ar.edu.ungs.hangman.core.sessions.application.SessionResponse;
-import ar.edu.ungs.hangman.core.sessions.application.tries.SessionTryer;
 import ar.edu.ungs.hangman.core.sessions.domain.DomainSessionFinder;
+import ar.edu.ungs.hangman.core.sessions.domain.DomainSessionTryer;
 import ar.edu.ungs.hangman.core.sessions.domain.Session;
 
 import java.util.ArrayList;
@@ -11,13 +11,15 @@ import java.util.List;
 
 public final class SessionGuesser {
 	private final static String USER_MACHINE = "machine";
+	private final static Integer MAX_TRIES = 100;
+
 	private final static List<Character> VOWELS = vowels();
 	private final static List<Character> CONSONANTS = consonants();
 
 	private final DomainSessionFinder sessionFinder;
-	private final SessionTryer sessionTryer;
+	private final DomainSessionTryer sessionTryer;
 
-	public SessionGuesser(DomainSessionFinder sessionFinder, SessionTryer sessionTryer) {
+	public SessionGuesser(DomainSessionFinder sessionFinder, DomainSessionTryer sessionTryer) {
 		this.sessionFinder = sessionFinder;
 		this.sessionTryer = sessionTryer;
 	}
@@ -26,11 +28,11 @@ public final class SessionGuesser {
 		Session session = this.sessionFinder.find(USER_MACHINE);
 
 		for (Character character : VOWELS) {
-			sessionTryer.execute(USER_MACHINE, character);
+			sessionTryer.execute(session, character, MAX_TRIES);
 		}
 
 		for (Character consonant : CONSONANTS) {
-			sessionTryer.execute(USER_MACHINE, consonant);
+			sessionTryer.execute(session, consonant, MAX_TRIES);
 		}
 
 		return SessionResponse.map(session);

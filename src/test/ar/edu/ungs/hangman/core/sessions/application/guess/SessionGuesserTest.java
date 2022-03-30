@@ -1,46 +1,40 @@
 package ar.edu.ungs.hangman.core.sessions.application.guess;
 
-import ar.edu.ungs.hangman.core.sessions.application.tries.SessionTryer;
-import ar.edu.ungs.hangman.core.sessions.domain.DomainSessionFinder;
-import ar.edu.ungs.hangman.core.sessions.domain.SessionRepository;
+import ar.edu.ungs.hangman.core.sessions.application.SessionResponse;
+import ar.edu.ungs.hangman.core.sessions.domain.*;
+import ar.edu.ungs.hangman.core.words.domain.WordMother;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 final class SessionGuesserTest {
-	private SessionGuesser guesser;
+	private SessionGuesser sessionGuesser;
 
-	private SessionRepository repository;
 	private DomainSessionFinder sessionFinder;
-	private SessionTryer sessionTryer;
+	private DomainSessionTryer sessionTryer;
+	private SessionRepository sessionRepository;
 
 	@BeforeEach
 	void setUp() {
-
 		this.sessionFinder = mock(DomainSessionFinder.class);
-		this.repository = mock(SessionRepository.class);
-		this.sessionTryer = new SessionTryer(this.sessionFinder, repository);
+		this.sessionRepository = mock(SessionRepository.class);
+		this.sessionTryer = new DomainSessionTryer(sessionFinder, sessionRepository);
 
-		this.guesser = new SessionGuesser(sessionFinder, sessionTryer);
+		this.sessionGuesser = new SessionGuesser(sessionFinder, sessionTryer);
 	}
 
 	@Test
 	void should_guess_the_word() {
-		/*
-		String expectedWord = "ae";
-		Session sessionExpected = SessionMother.build("machine",new Word(expectedWord));
+		Session session = SessionMother.build("machine", WordMother.random());
+		SessionResponse expected = SessionResponse.map(session);
 
-		when(sessionFinder.find("machine")).thenReturn(sessionExpected);
+		when(this.sessionFinder.find("machine")).thenReturn(session);
 
-		String actual = guesser.guess().word();
+		SessionResponse actual = this.sessionGuesser.guess();
 
-		assertEquals(expectedWord, actual);
-		 */
-	}
-
-	@Test
-	void should_fail_the_guess() {
-
+		assertEquals(expected.characters(), actual.characters());
 	}
 }

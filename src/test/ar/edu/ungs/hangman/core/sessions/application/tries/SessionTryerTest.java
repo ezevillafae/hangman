@@ -1,71 +1,42 @@
 package ar.edu.ungs.hangman.core.sessions.application.tries;
 
-import ar.edu.ungs.hangman.core.sessions.domain.*;
-import ar.edu.ungs.hangman.core.words.domain.WordMother;
+import ar.edu.ungs.hangman.core.sessions.domain.DomainSessionFinder;
+import ar.edu.ungs.hangman.core.sessions.domain.DomainSessionTryer;
+import ar.edu.ungs.hangman.core.sessions.domain.Session;
+import ar.edu.ungs.hangman.core.sessions.domain.SessionMother;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 class SessionTryerTest {
     private SessionTryer tryer;
 
-    private DomainSessionFinder sessionFinder;
-    private SessionRepository repository;
+    private DomainSessionTryer domainSessionTryer;
+    private DomainSessionFinder domainSessionFinder;
+
 
     @BeforeEach
     void setUp() {
-        this.sessionFinder = mock(DomainSessionFinder.class);
-        this.repository = mock(SessionRepository.class);
+        this.domainSessionTryer = mock(DomainSessionTryer.class);
+        this.domainSessionFinder = mock(DomainSessionFinder.class);
 
-        tryer = new SessionTryer(sessionFinder, repository);
+        tryer = new SessionTryer(domainSessionTryer, domainSessionFinder);
     }
 
     @Test
-    void when_choose_successful_letter_should_try() {
+    void should_try() {
         Session session = SessionMother.random();
         Character character = pickValidCharacter(session);
-        int fails = session.fails();
 
-        when(sessionFinder.find(session.user())).thenReturn(session);
+        when(domainSessionFinder.find(session.user())).thenReturn(session);
 
         tryer.execute(session.user(), character);
 
-        assertEquals(session.fails(), fails);
-        verify(repository, atLeastOnce()).save(session);
+        verify(domainSessionTryer, atLeastOnce()).execute(session, character, 6);
     }
-
-
-    @Test
-    void when_choose_fail_letter_should_failed_try() {
-        String word = "test";
-        Session session = SessionMother.build(WordMother.random(word));
-        int fails = session.fails();
-
-        when(sessionFinder.find(session.user())).thenReturn(session);
-
-        tryer.execute(session.user(), 'a');
-
-        assertEquals(fails + 1, session.fails());
-        verify(repository, atLeastOnce()).save(session);
-    }
-
-    @Test
-    void when_choose_fail_letter_and_hasnt_fail_tries_should_throws_session_finished() {
-        String word = "test";
-        Integer fails = 3;
-        Session session = SessionMother.build(WordMother.random(word), fails);
-
-        when(sessionFinder.find(session.user())).thenReturn(session);
-
-        assertThrows(SessionFinished.class, () -> tryer.execute(session.user(), 'a'));
-        verifyNoInteractions(repository);
-    }
-
 
     private Character pickValidCharacter(Session session) {
         return session.word().value().charAt(new Random().nextInt(session.word().value().length() - 1));

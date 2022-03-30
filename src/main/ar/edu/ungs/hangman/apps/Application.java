@@ -6,6 +6,7 @@ import ar.edu.ungs.hangman.core.sessions.application.find.SessionFinder;
 import ar.edu.ungs.hangman.core.sessions.application.guess.SessionGuesser;
 import ar.edu.ungs.hangman.core.sessions.application.tries.SessionTryer;
 import ar.edu.ungs.hangman.core.sessions.domain.DomainSessionFinder;
+import ar.edu.ungs.hangman.core.sessions.domain.DomainSessionTryer;
 import ar.edu.ungs.hangman.core.sessions.domain.SessionRepository;
 import ar.edu.ungs.hangman.core.sessions.infrastructure.InMemorySessionRepository;
 import ar.edu.ungs.hangman.core.words.domain.DomainWordRandomPicker;
@@ -25,11 +26,12 @@ public abstract class Application {
 
 		SessionRepository sessionRepository = new InMemorySessionRepository();
 		DomainSessionFinder domainSessionFinder = new DomainSessionFinder(sessionRepository);
+		DomainSessionTryer domainSessionTryer = new DomainSessionTryer(domainSessionFinder, sessionRepository);
 
-		this.sessionTryer = new SessionTryer(domainSessionFinder, sessionRepository);
+		this.sessionTryer = new SessionTryer(domainSessionTryer, domainSessionFinder);
 		this.sessionDefaultCreator = new SessionDefaultCreator(sessionRepository, domainWordRandomPicker);
 		this.sessionGuessCreator = new SessionGuessCreator(sessionRepository);
-		this.sessionGuesser = new SessionGuesser(domainSessionFinder, sessionTryer);
+		this.sessionGuesser = new SessionGuesser(domainSessionFinder, domainSessionTryer);
 
 		this.sessionFinder = new SessionFinder(domainSessionFinder);
 	}

@@ -65,9 +65,9 @@ public final class Session {
         List<Integer> positions = new ArrayList<>();
 
         for (int i = 0; i < word.length(); i++) {
-            Character wordCharacter = word.value().charAt(i);
+            Character wordCharacter = Character.toLowerCase(word.value().charAt(i));
 
-            if (wordCharacter.equals(character)) {
+            if (wordCharacter.equals(Character.toLowerCase(character))) {
                 positions.add(i);
             }
         }
