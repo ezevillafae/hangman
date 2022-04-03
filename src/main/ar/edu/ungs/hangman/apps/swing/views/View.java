@@ -1,17 +1,14 @@
 package ar.edu.ungs.hangman.apps.swing.views;
 
 import javax.swing.*;
+import java.awt.*;
 
-public abstract class View extends JFrame {
-	protected void draw(){
-		super.setSize(WIDTH, HEIGHT);
-		super.setLayout(null);
-		super.setVisible(true);
-	}
+public abstract class View extends JComponent {
+	public abstract Integer width();
+	public abstract Integer height();
+	public abstract Integer margin();
 
-	protected void die(){
-		super.setVisible(false);
-		super.removeAll();
-		super.dispose();
+	protected void showMessageDialog(Component component, String message) {
+		JOptionPane.showMessageDialog(component, new JLabel(message));
 	}
 }
