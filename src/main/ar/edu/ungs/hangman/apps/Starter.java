@@ -1,6 +1,7 @@
 package ar.edu.ungs.hangman.apps;
 
 import ar.edu.ungs.hangman.apps.cli.CliApplication;
+import ar.edu.ungs.hangman.apps.shared.Application;
 import ar.edu.ungs.hangman.apps.swing.SwingApplication;
 
 import java.lang.reflect.InvocationTargetException;

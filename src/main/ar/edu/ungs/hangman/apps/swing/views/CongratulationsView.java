@@ -1,13 +1,13 @@
 package ar.edu.ungs.hangman.apps.swing.views;
 
 
-public final class CongratulationsView extends BaseView {
+public final class CongratulationsView extends View {
 	public CongratulationsView() {
-		setupComponents();
+		draw();
 	}
 
 	@Override
-	void setupComponents() {
-
+	protected void draw() {
+		super.draw();
 	}
 }

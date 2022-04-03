@@ -3,7 +3,7 @@ package ar.edu.ungs.hangman.core.sessions.infrastructure.ioc;
 import ar.edu.ungs.hangman.core.sessions.application.create.SessionGuessCreator;
 import ar.edu.ungs.hangman.core.sessions.domain.DomainSessionFinder;
 
-public final class SessionGuessCreatorSingleston {
+public final class SessionGuessCreatorSingleton {
 	private static volatile SessionGuessCreator instance;
 
 	public static SessionGuessCreator instance() {

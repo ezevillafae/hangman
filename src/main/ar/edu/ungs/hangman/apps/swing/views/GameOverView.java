@@ -1,12 +1,12 @@
 package ar.edu.ungs.hangman.apps.swing.views;
 
-public final class GameOverView extends BaseView {
+public final class GameOverView extends View {
 	public GameOverView() {
-		setupComponents();
+		draw();
 	}
 
 	@Override
-	void setupComponents() {
-
+	protected void draw() {
+		super.draw();
 	}
 }
