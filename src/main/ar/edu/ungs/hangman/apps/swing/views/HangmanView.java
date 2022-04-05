@@ -21,7 +21,7 @@ public final class HangmanView extends View {
 	private JFrame frame;
 	private JTextField characterField;
 	private JLabel hangmanTitle;
-	private JLabel[] charactes;
+	private JLabel[] characters;
 	private JLabel lblUserName;
 	private JLabel hangmanImage;
 	private Font customFont;
@@ -69,9 +69,12 @@ public final class HangmanView extends View {
 		JButton btnTry = new JButton("Try");
 
 		btnTry.addActionListener(e -> {
-			tryer.execute(user, characterField.getText().charAt(0));
-			SessionResponse response = this.sessionFinder.find(user);
-			printCharacters(response);
+			if(!characterFieldIsEmpty()){
+				tryer.execute(user, characterField.getText().charAt(0));
+				SessionResponse response = this.sessionFinder.find(user);
+				printCharacters(response);
+				this.characterField.setText("");
+			}
 		});
 
 		btnTry.setBounds(25, 248, 89, 23);
@@ -135,8 +138,12 @@ public final class HangmanView extends View {
 		frame.getContentPane().add(lblClose);
 
 		SessionResponse response = this.sessionFinder.find(user);
-		this.charactes = new JLabel[response.characters().length];
+		this.characters = new JLabel[response.characters().length];
 		printCharacters(response);
+	}
+
+	private boolean characterFieldIsEmpty() {
+		return this.characterField.getText().length() == 0;
 	}
 
 	private void loadFont() {
@@ -163,18 +170,20 @@ public final class HangmanView extends View {
 
 	private void printCharacters(SessionResponse session) {
 		int xAxisTranslation = 0;
-
 		for (int i = 0; i < session.characters().length; i++) {
-			if (session.characters()[i] == null){
-				this.charactes[i] = new JLabel("_");
-				this.charactes[i].setBounds(27 + xAxisTranslation, 200, 46, 14);
+			if(characters[i] == null){
+				this.characters[i] = new JLabel("_");
+				this.characters[i].setBounds(27 + xAxisTranslation, 200, 46, 14);
 				xAxisTranslation += 20;
-				frame.getContentPane().add(charactes[i]);
-			} else {
-				this.charactes[i] = new JLabel(session.characters()[i].toString());
+				frame.getContentPane().add(characters[i]);
+			}else{
+				if(session.characters()[i] != null) {
+					this.characters[i].setText(session.characters()[i].toString());
+				}
 			}
 		}
 	}
+
 
 	@Override
 	public JFrame frame() {
