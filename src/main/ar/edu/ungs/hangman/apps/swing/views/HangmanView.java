@@ -4,6 +4,7 @@ import ar.edu.ungs.hangman.core.sessions.application.SessionResponse;
 import ar.edu.ungs.hangman.core.sessions.application.create.SessionDefaultCreator;
 import ar.edu.ungs.hangman.core.sessions.application.find.SessionFinder;
 import ar.edu.ungs.hangman.core.sessions.application.tries.SessionTryer;
+import ar.edu.ungs.hangman.core.sessions.domain.SessionFinished;
 import ar.edu.ungs.hangman.core.words.domain.Difficult;
 import ar.edu.ungs.hangman.core.words.domain.Language;
 
@@ -70,10 +71,15 @@ public final class HangmanView extends View {
 
 		btnTry.addActionListener(e -> {
 			if(!characterFieldIsEmpty()){
-				tryer.execute(user, characterField.getText().charAt(0));
-				SessionResponse response = this.sessionFinder.find(user);
-				printCharacters(response);
-				this.characterField.setText("");
+				try {
+					tryer.execute(user, characterField.getText().charAt(0));
+					SessionResponse response = this.sessionFinder.find(user);
+					printCharacters(response);
+					this.characterField.setText("");
+				} catch (SessionFinished sessionFinished){
+					showMessageDialog(btnTry, sessionFinished.getMessage());
+					dispose();
+				}
 			}
 		});
 
@@ -188,6 +194,11 @@ public final class HangmanView extends View {
 	@Override
 	public JFrame frame() {
 		return frame;
+	}
+
+	public void dispose() {
+		this.frame.dispose();
+		this.frame.setVisible(false);
 	}
 
 	class LimitJTextField extends PlainDocument {
