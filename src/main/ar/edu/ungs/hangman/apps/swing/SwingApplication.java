@@ -1,6 +1,7 @@
 package ar.edu.ungs.hangman.apps.swing;
 
 import ar.edu.ungs.hangman.apps.shared.Application;
+import ar.edu.ungs.hangman.apps.swing.views.GuesserView;
 import ar.edu.ungs.hangman.apps.swing.views.HangmanView;
 import ar.edu.ungs.hangman.apps.swing.views.MainView;
 import ar.edu.ungs.hangman.core.sessions.application.create.SessionDefaultCreator;
@@ -55,7 +56,8 @@ public final class SwingApplication implements Application {
 	public void run() {
 		EventQueue.invokeLater(() -> {
 			try {
-				HangmanView window = new HangmanView("Ezequiel", Language.SPANISH.toString(),this.sessionFinder,this.sessionDefaultCreator,this.tryer);
+				GuesserView window = new GuesserView("Ezequiel",Language.SPANISH.toString(),this.sessionGuessCreator, this.guesser);
+				//HangmanView window = new HangmanView("Ezequiel", Language.SPANISH.toString(),this.sessionFinder,this.sessionDefaultCreator,this.tryer);
 				window.frame().setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
