@@ -2,6 +2,7 @@ package ar.edu.ungs.hangman.apps.swing.views;
 
 import ar.edu.ungs.hangman.core.sessions.application.create.SessionGuessCreator;
 import ar.edu.ungs.hangman.core.sessions.application.guess.SessionGuesser;
+import ar.edu.ungs.hangman.core.sessions.domain.SessionFinished;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +17,6 @@ public final class GuesserView extends View {
 	private final String user;
 	private final String language;
 
-	private JFrame frame;
 	private JTextField wordField;
 	private Font customFont;
 	private int xMouse;
@@ -37,6 +37,8 @@ public final class GuesserView extends View {
 	                   String language,
 	                   SessionGuessCreator creator,
 	                   SessionGuesser guesser) {
+		super();
+
 		this.user = user;
 		this.language = language;
 		this.creator = creator;
@@ -50,7 +52,6 @@ public final class GuesserView extends View {
 		loadFont();
 
 		/* ---- Frame ------*/
-		frame = new JFrame();
 		frame.setUndecorated(true);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -114,13 +115,24 @@ public final class GuesserView extends View {
 
 		btnStart.addActionListener(e -> {
 			if(validWord(wordField.getText())) {
-
-
+				String word = wordField.getText();
+				creator.create(word);
 
 				wordField.setText("");
 				wordField.setEnabled(false);
 				btnStart.setEnabled(false);
-			}else {
+
+
+				try {
+					guesser.guess();
+					showMessageDialog(btnStart, winnerText);
+				} catch (SessionFinished sessionFinished) {
+					showMessageDialog(btnStart, looserText);
+				} finally {
+					dispose();
+				}
+
+			} else {
 				wordField.setText("");
 			}
 		});
@@ -134,7 +146,7 @@ public final class GuesserView extends View {
 
 
 		/*--------- label user name  -----------*/
-		lblUserName = new JLabel("Usuario1");
+		lblUserName = new JLabel(this.user);
 		lblUserName.setFont(customFont.deriveFont(14f));
 		lblUserName.setBounds(39, 110, 102, 24);
 		frame.getContentPane().add(lblUserName);
@@ -174,15 +186,9 @@ public final class GuesserView extends View {
 			allLetters= allLetters && isLetter(word.charAt(i));
 		}
 		return allLetters;
-
 	}
 
 	private boolean isLetter(char character) {
 		return character <= 'z' && character >= 'a' || character <= 'Z' && character >= 'A';
-	}
-
-	@Override
-	public JFrame frame() {
-		return this.frame;
 	}
 }

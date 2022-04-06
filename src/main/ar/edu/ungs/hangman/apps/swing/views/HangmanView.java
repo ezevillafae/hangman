@@ -39,6 +39,8 @@ public final class HangmanView extends View {
 	private final SessionTryer tryer;
 
 	public HangmanView(String user, String language, SessionFinder sessionFinder, SessionDefaultCreator creator, SessionTryer tryer) {
+		super();
+
 		this.user = user;
 		this.language = language;
 		this.sessionFinder = sessionFinder;
@@ -53,7 +55,7 @@ public final class HangmanView extends View {
 	private void initialize() {
 		setLookAndFeel();
 		loadFont();
-		frame = new JFrame();
+
 		frame.setUndecorated(true);
 		frame.setBackground(Color.WHITE);
 		frame.setResizable(false);
@@ -188,17 +190,6 @@ public final class HangmanView extends View {
 				}
 			}
 		}
-	}
-
-
-	@Override
-	public JFrame frame() {
-		return frame;
-	}
-
-	public void dispose() {
-		this.frame.dispose();
-		this.frame.setVisible(false);
 	}
 
 	class LimitJTextField extends PlainDocument {
