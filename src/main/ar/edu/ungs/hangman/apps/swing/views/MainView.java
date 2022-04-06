@@ -30,7 +30,6 @@ public final class MainView extends View {
 	private final SessionGuessCreator sessionGuessCreator;
 	private final SessionGuesser guesser;
 
-	private JFrame frame;
 	private final JLabel titleLabel;
 	private final JLabel languageLabel;
 	private final JRadioButton englishLanguageRadioButton;
@@ -45,6 +44,8 @@ public final class MainView extends View {
 	                SessionFinder sessionFinder,
 	                SessionGuessCreator sessionGuessCreator,
 	                SessionGuesser guesser) {
+		super();
+
 		this.sessionFinder = sessionFinder;
 		this.sessionDefaultCreator = sessionDefaultCreator;
 		this.tryer = tryer;
@@ -52,7 +53,6 @@ public final class MainView extends View {
 		this.guesser = guesser;
 
 
-		this.frame = new JFrame();
 		frame.setBounds(0, 0, 400, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
