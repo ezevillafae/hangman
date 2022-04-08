@@ -10,9 +10,8 @@ public final class DomainSessionTryer {
     }
 
     public void execute(Session session, Character character, Integer maxTries) {
+
         Integer[] positions = session.positions(character);
-
-
 
         if (isFailedTry(positions)) {
             failTry(session, maxTries);

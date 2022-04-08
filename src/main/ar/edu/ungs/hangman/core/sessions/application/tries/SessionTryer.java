@@ -18,4 +18,8 @@ public final class SessionTryer {
 
         domainSessionTryer.execute(session, character, MAX_TRIES);
     }
+
+    public Integer getMaxTries(){
+        return MAX_TRIES;
+    }
 }

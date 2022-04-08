@@ -81,13 +81,19 @@ public final class HangmanView extends View {
 
 		btnTry.addActionListener(e -> {
 			if(!characterFieldIsEmpty()){
+				SessionResponse response;
 				try {
+
 					tryer.execute(user, characterField.getText().charAt(0));
-					SessionResponse response = this.sessionFinder.find(user);
+					response = this.sessionFinder.find(user);
 					printCharacters(response);
-					lblAttemps.setText("Intentos : " + response.fails() + " / 6");
+					lblAttemps.setText(String.format("Intentos %s / %s",response.fails(),tryer.getMaxTries()));
 					this.characterField.setText("");
+
 				} catch (SessionFinished sessionFinished) {
+					response = this.sessionFinder.find(user);
+					printCharacters(response);
+					lblAttemps.setText(String.format("Intentos %s / %s",response.fails(),tryer.getMaxTries()));
 					showMessageDialog(btnTry, sessionFinished.getMessage());
 					dispose();
 				}
@@ -168,10 +174,9 @@ public final class HangmanView extends View {
 		printCharacters(response);
 
 		/* -------------  label attemps --------  */
-		lblAttemps = new JLabel("Intentos : " + response.fails() + " / 6");
+		lblAttemps = new JLabel(String.format("Intentos %s / %s",response.fails(),tryer.getMaxTries()));
 		lblAttemps.setFont(customFont.deriveFont(14f));
 		lblAttemps.setBounds(25,100, 100,100);
-
 
 		frame.add(lblAttemps);
 
