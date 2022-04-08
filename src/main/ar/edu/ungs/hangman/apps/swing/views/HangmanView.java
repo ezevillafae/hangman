@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.util.Objects;
 
 public final class HangmanView extends View {
-	private JFrame frame;
 	private JTextField characterField;
 	private JLabel hangmanTitle;
 	private JLabel[] characters;
@@ -56,6 +55,8 @@ public final class HangmanView extends View {
 		setLookAndFeel();
 		loadFont();
 
+
+		/* ----------  Frame  ------------- */
 		frame.setUndecorated(true);
 		frame.setBackground(Color.WHITE);
 		frame.setResizable(false);
@@ -63,12 +64,18 @@ public final class HangmanView extends View {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
+		/* frame center */
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
 
+		/* ----------  Image Hangman  ------------- */
 		hangmanImage = new JLabel();
 		hangmanImage.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/hanged.png"))));
 		hangmanImage.setBounds(196, 39, 434, 261);
 		frame.getContentPane().add(hangmanImage);
 
+
+		/* ----------  Try Button   ------------- */
 		JButton btnTry = new JButton("Try");
 
 		btnTry.addActionListener(e -> {
@@ -88,6 +95,8 @@ public final class HangmanView extends View {
 		btnTry.setBounds(25, 248, 89, 23);
 		frame.getContentPane().add(btnTry);
 
+
+		/* ----------  character field  ------------- */
 		characterField = new JTextField();
 		characterField.setDocument(new LimitJTextField(1));
 		characterField.addKeyListener(new KeyAdapter() {
@@ -104,17 +113,20 @@ public final class HangmanView extends View {
 		characterField.setColumns(10);
 		frame.getContentPane().add(characterField);
 
+
+		/* ----------  hangmanTitle  ------------- */
 		hangmanTitle = new JLabel("Hangman");
 		hangmanTitle.setFont(customFont.deriveFont(24f));
 		hangmanTitle.setBounds(25, 60, 112, 39);
 		frame.getContentPane().add(hangmanTitle);
 
+		/* ----------  label userName  ------------- */
 		lblUserName = new JLabel(this.user);
 		lblUserName.setFont(customFont.deriveFont(14f));
 		lblUserName.setBounds(25, 110, 124, 14);
 		frame.getContentPane().add(lblUserName);
 
-
+		/* ----------  frameDrag  ------------- */
 		JLabel frameDrag = new JLabel("");
 		frameDrag.addMouseListener(new MouseAdapter() {
 			@Override
@@ -133,6 +145,8 @@ public final class HangmanView extends View {
 		frameDrag.setBounds(0, 0, 386, 28);
 		frame.getContentPane().add(frameDrag);
 
+
+		/* ----------  Button close   ------------- */
 		lblClose = new JLabel("X");
 		lblClose.setFont(customFont.deriveFont(20f));
 		lblClose.addMouseListener(new MouseAdapter() {
@@ -145,6 +159,8 @@ public final class HangmanView extends View {
 		lblClose.setIcon(escaledIconClose);
 		frame.getContentPane().add(lblClose);
 
+
+		/*  finding user   */
 		SessionResponse response = this.sessionFinder.find(user);
 		this.characters = new JLabel[response.characters().length];
 		printCharacters(response);
