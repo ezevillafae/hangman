@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -33,8 +34,6 @@ final class SessionGuesserTest {
 
 		when(this.sessionFinder.find("machine")).thenReturn(session);
 
-		SessionResponse actual = this.sessionGuesser.guess();
-
-		assertEquals(expected.characters(), actual.characters());
+		assertThrows(SessionFinished.class, () -> this.sessionGuesser.guess());
 	}
 }
