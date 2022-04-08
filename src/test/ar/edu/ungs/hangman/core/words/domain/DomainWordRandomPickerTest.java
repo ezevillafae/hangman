@@ -11,38 +11,38 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 final class DomainWordRandomPickerTest {
-    private DomainWordRandomPicker picker;
-    private WordRepository repository;
+	private DomainWordRandomPicker picker;
+	private WordRepository repository;
 
-    @BeforeEach
-    void setUp() {
-        this.repository = mock(WordRepository.class);
-        this.picker = new DomainWordRandomPicker(repository);
-    }
+	@BeforeEach
+	void setUp() {
+		this.repository = mock(WordRepository.class);
+		this.picker = new DomainWordRandomPicker(repository);
+	}
 
-    @Test
-    void when_contains_words_should_pick_random_word() {
-        Language language = LanguageMother.random();
-        Difficult difficult = DifficultMother.random();
+	@Test
+	void when_contains_words_should_pick_random_word() {
+		Language language = LanguageMother.random();
+		Difficult difficult = DifficultMother.random();
 
-        List<Word> expects = WordMother.randoms(language, difficult);
+		List<Word> expects = WordMother.randoms(language, difficult);
 
-        when(repository.searchByDifficultAndLanguage(difficult, language)).thenReturn(expects);
+		when(repository.searchByDifficultAndLanguage(difficult, language)).thenReturn(expects);
 
-        Word actual = picker.pick(difficult, language);
+		Word actual = picker.pick(difficult, language);
 
-        assertTrue(expects.contains(actual));
-    }
+		assertTrue(expects.contains(actual));
+	}
 
-    @Test
-    void when_not_contains_words_should_throws_word_not_exists() {
-        Language language = LanguageMother.random();
-        Difficult difficult = DifficultMother.random();
+	@Test
+	void when_not_contains_words_should_throws_word_not_exists() {
+		Language language = LanguageMother.random();
+		Difficult difficult = DifficultMother.random();
 
-        List<Word> expects = WordMother.empty();
+		List<Word> expects = WordMother.empty();
 
-        when(repository.searchByDifficultAndLanguage(difficult, language)).thenReturn(expects);
+		when(repository.searchByDifficultAndLanguage(difficult, language)).thenReturn(expects);
 
-        assertThrows(WordNotExists.class, () -> picker.pick(difficult, language));
-    }
+		assertThrows(WordNotExists.class, () -> picker.pick(difficult, language));
+	}
 }

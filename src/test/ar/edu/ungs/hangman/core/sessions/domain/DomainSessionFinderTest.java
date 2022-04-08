@@ -11,34 +11,34 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class DomainSessionFinderTest {
-    private DomainSessionFinder finder;
+	private DomainSessionFinder finder;
 
-    private SessionRepository repository;
+	private SessionRepository repository;
 
-    @BeforeEach
-    void setUp() {
-        this.repository = mock(SessionRepository.class);
+	@BeforeEach
+	void setUp() {
+		this.repository = mock(SessionRepository.class);
 
-        this.finder = new DomainSessionFinder(repository);
-    }
+		this.finder = new DomainSessionFinder(repository);
+	}
 
-    @Test
-    void when_session_exists_should_find_session() {
-        Session expected = SessionMother.random();
+	@Test
+	void when_session_exists_should_find_session() {
+		Session expected = SessionMother.random();
 
-        when(repository.findByUser(expected.user())).thenReturn(Optional.of(expected));
+		when(repository.findByUser(expected.user())).thenReturn(Optional.of(expected));
 
-        Session actual = finder.find(expected.user());
+		Session actual = finder.find(expected.user());
 
-        assertEquals(expected, actual);
-    }
+		assertEquals(expected, actual);
+	}
 
-    @Test
-    void when_session_not_exists_should_throws_session_not_exists() {
-        Session expected = SessionMother.random();
+	@Test
+	void when_session_not_exists_should_throws_session_not_exists() {
+		Session expected = SessionMother.random();
 
-        when(repository.findByUser(expected.user())).thenReturn(Optional.empty());
+		when(repository.findByUser(expected.user())).thenReturn(Optional.empty());
 
-        assertThrows(SessionNotExists.class, () -> finder.find(expected.user()));
-    }
+		assertThrows(SessionNotExists.class, () -> finder.find(expected.user()));
+	}
 }

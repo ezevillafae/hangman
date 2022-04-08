@@ -8,19 +8,19 @@ import java.util.Map;
 import java.util.Optional;
 
 public final class InMemorySessionRepository implements SessionRepository {
-    private final Map<String, Session> sessions;
+	private final Map<String, Session> sessions;
 
-    public InMemorySessionRepository() {
-        this.sessions = new HashMap<>();
-    }
+	public InMemorySessionRepository() {
+		this.sessions = new HashMap<>();
+	}
 
-    @Override
-    public void save(Session session) {
-        sessions.put(session.user(), session);
-    }
+	@Override
+	public void save(Session session) {
+		sessions.put(session.user(), session);
+	}
 
-    @Override
-    public Optional<Session> findByUser(String user) {
-        return Optional.ofNullable(sessions.get(user));
-    }
+	@Override
+	public Optional<Session> findByUser(String user) {
+		return Optional.ofNullable(sessions.get(user));
+	}
 }

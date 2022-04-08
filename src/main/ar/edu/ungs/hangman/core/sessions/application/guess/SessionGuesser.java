@@ -24,6 +24,19 @@ public final class SessionGuesser {
 		this.sessionTryer = sessionTryer;
 	}
 
+	private static List<Character> vowels() {
+		List<Character> values = new ArrayList<>();
+		Collections.addAll(values, 'A', 'E', 'I', 'O', 'U');
+		return values;
+	}
+
+	private static List<Character> consonants() {
+		List<Character> values = new ArrayList<>();
+		Collections.addAll(values, 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V',
+		                   'X', 'Z', 'W', 'Y');
+		return values;
+	}
+
 	public SessionResponse guess() {
 		Session session = this.sessionFinder.find(USER_MACHINE);
 
@@ -36,18 +49,6 @@ public final class SessionGuesser {
 		}
 
 		return SessionResponse.map(session);
-	}
-
-	private static List<Character> vowels() {
-		List<Character> values = new ArrayList<>();
-		Collections.addAll(values, 'A', 'E', 'I', 'O', 'U');
-		return values;
-	}
-
-	private static List<Character> consonants() {
-		List<Character> values = new ArrayList<>();
-		Collections.addAll(values, 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'X', 'Z', 'W', 'Y');
-		return values;
 	}
 }
 

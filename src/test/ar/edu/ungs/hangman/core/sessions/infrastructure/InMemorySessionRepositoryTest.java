@@ -12,30 +12,30 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 final class InMemorySessionRepositoryTest {
-    private InMemorySessionRepository repository;
+	private InMemorySessionRepository repository;
 
-    @BeforeEach
-    void setUp() {
-        this.repository = new InMemorySessionRepository();
-    }
+	@BeforeEach
+	void setUp() {
+		this.repository = new InMemorySessionRepository();
+	}
 
-    @Test
-    void should_find_session_by_user() {
-        List<Session> sessions = SessionMother.randoms();
+	@Test
+	void should_find_session_by_user() {
+		List<Session> sessions = SessionMother.randoms();
 
-        sessions.forEach(session -> repository.save(session));
+		sessions.forEach(session -> repository.save(session));
 
-        Session expected = sessions.stream().findAny().get();
+		Session expected = sessions.stream().findAny().get();
 
-        Optional<Session> actual = repository.findByUser(expected.user());
+		Optional<Session> actual = repository.findByUser(expected.user());
 
-        assertTrue(actual.isPresent());
-    }
+		assertTrue(actual.isPresent());
+	}
 
-    @Test
-    void should_save_session() {
-        List<Session> sessions = SessionMother.randoms();
+	@Test
+	void should_save_session() {
+		List<Session> sessions = SessionMother.randoms();
 
-        sessions.forEach(session -> repository.save(session));
-    }
+		sessions.forEach(session -> repository.save(session));
+	}
 }

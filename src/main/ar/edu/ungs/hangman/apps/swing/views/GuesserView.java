@@ -16,7 +16,10 @@ import java.util.Objects;
 public final class GuesserView extends View {
 	private final String user;
 	private final String language;
-
+	private final String winnerText = "the machine guessed!";
+	private final String looserText = "the machine has failed";
+	private final SessionGuessCreator creator;
+	private final SessionGuesser guesser;
 	private JTextField wordField;
 	private Font customFont;
 	private int xMouse;
@@ -27,16 +30,8 @@ public final class GuesserView extends View {
 	private JLabel lblClose;
 	private JLabel lblUserName;
 	private JLabel hangmanBackgroundImage;
-	private final String winnerText ="the machine guessed!";
-	private final String looserText ="the machine has failed";
 
-	private final SessionGuessCreator creator;
-	private final SessionGuesser guesser;
-
-	public GuesserView(String user,
-	                   String language,
-	                   SessionGuessCreator creator,
-	                   SessionGuesser guesser) {
+	public GuesserView(String user, String language, SessionGuessCreator creator, SessionGuesser guesser) {
 		super();
 
 		this.user = user;
@@ -58,7 +53,7 @@ public final class GuesserView extends View {
 
 		/* frame center */
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
+		frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
 
 		frame.getContentPane().setLayout(null);
 
@@ -78,7 +73,7 @@ public final class GuesserView extends View {
 			@Override
 			public void mouseDragged(MouseEvent e) {
 
-				frame.setLocation(e.getXOnScreen() - xMouse ,e.getYOnScreen() - yMouse);
+				frame.setLocation(e.getXOnScreen() - xMouse, e.getYOnScreen() - yMouse);
 			}
 		});
 
@@ -114,7 +109,7 @@ public final class GuesserView extends View {
 		frame.getContentPane().add(btnStart);
 
 		btnStart.addActionListener(e -> {
-			if(validWord(wordField.getText())) {
+			if (validWord(wordField.getText())) {
 				String word = wordField.getText();
 				creator.create(word);
 
@@ -173,17 +168,16 @@ public final class GuesserView extends View {
 	private void setLookAndFeel() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				| UnsupportedLookAndFeelException e) {
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	private boolean validWord(String word) {
-		boolean allLetters= true;
+		boolean allLetters = true;
 		for (int i = 0; i < word.length(); i++) {
-			allLetters= allLetters && isLetter(word.charAt(i));
+			allLetters = allLetters && isLetter(word.charAt(i));
 		}
 		return allLetters;
 	}

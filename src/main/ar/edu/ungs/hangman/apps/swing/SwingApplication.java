@@ -53,7 +53,8 @@ public final class SwingApplication implements Application {
 	public void run() {
 		EventQueue.invokeLater(() -> {
 			try {
-				MainView window = new MainView(sessionDefaultCreator, tryer, sessionFinder, sessionGuessCreator, guesser);
+				MainView window = new MainView(sessionDefaultCreator, tryer, sessionFinder, sessionGuessCreator,
+				                               guesser);
 				window.frame().setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();

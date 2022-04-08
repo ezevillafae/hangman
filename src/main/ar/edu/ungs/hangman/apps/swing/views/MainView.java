@@ -5,22 +5,16 @@ import ar.edu.ungs.hangman.core.sessions.application.create.SessionGuessCreator;
 import ar.edu.ungs.hangman.core.sessions.application.find.SessionFinder;
 import ar.edu.ungs.hangman.core.sessions.application.guess.SessionGuesser;
 import ar.edu.ungs.hangman.core.sessions.application.tries.SessionTryer;
-import ar.edu.ungs.hangman.core.sessions.domain.DomainSessionFinder;
 import ar.edu.ungs.hangman.core.words.domain.Language;
 
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
-
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-import javax.swing.event.ChangeListener;
 
 public class MainView extends View {
 
@@ -34,7 +28,8 @@ public class MainView extends View {
 
 	private static final String ENGLISH_RADIO_BUTTON_TEXT = "Inglés";
 	private static final String SPANISH_RADIO_BUTTON_TEXT = "Español";
-
+	protected int xMouse;
+	protected int yMouse;
 	private JTextField userNameTextField;
 	private Font customFont;
 	private JLabel lblUserName;
@@ -47,8 +42,6 @@ public class MainView extends View {
 	private JPanel panel;
 	private JLabel logoUngs;
 	private JLabel titleHangman;
-	protected int xMouse;
-	protected int yMouse;
 	private ButtonGroup languageButtonGroup;
 
 
@@ -61,7 +54,11 @@ public class MainView extends View {
 	/**
 	 * Create the application.
 	 */
-	public MainView(SessionDefaultCreator sessionDefaultCreator, SessionTryer tryer, SessionFinder sessionFinder, SessionGuessCreator sessionGuessCreator, SessionGuesser guesser) {
+	public MainView(SessionDefaultCreator sessionDefaultCreator,
+	                SessionTryer tryer,
+	                SessionFinder sessionFinder,
+	                SessionGuessCreator sessionGuessCreator,
+	                SessionGuesser guesser) {
 		this.sessionDefaultCreator = sessionDefaultCreator;
 		this.tryer = tryer;
 		this.sessionFinder = sessionFinder;
@@ -86,7 +83,7 @@ public class MainView extends View {
 
 		/* frame center */
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
+		frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
 
 
 		/* ------ User name text field ----------*/
@@ -133,18 +130,19 @@ public class MainView extends View {
 		btnPlayHangman.setBounds(184, 247, 126, 23);
 
 		btnPlayHangman.addActionListener(e -> {
-			if(userNameTextField.getText().isEmpty()){
+			if (userNameTextField.getText().isEmpty()) {
 				showMessageDialog(userNameTextField, WARNING);
 				return;
 			}
-			if(languageButtonGroup.getSelection() == null){
+			if (languageButtonGroup.getSelection() == null) {
 				showMessageDialog(btnPlayHangman, LANGUAGE_LABEL_TEXT);
 				return;
 			}
 			frame.dispose();
 
 			EventQueue.invokeLater(() -> {
-				HangmanView window = new HangmanView(userNameTextField.getText(),Language.SPANISH.toString(),sessionFinder, sessionDefaultCreator, tryer);
+				HangmanView window = new HangmanView(userNameTextField.getText(), Language.SPANISH.toString(),
+				                                     sessionFinder, sessionDefaultCreator, tryer);
 				window.frame.setVisible(true);
 			});
 		});
@@ -155,18 +153,19 @@ public class MainView extends View {
 		btnPlayGuesser.setBounds(321, 247, 119, 23);
 
 		btnPlayGuesser.addActionListener(e -> {
-			if(userNameTextField.getText().isEmpty()){
+			if (userNameTextField.getText().isEmpty()) {
 				showMessageDialog(userNameTextField, WARNING);
 				return;
 			}
-			if(languageButtonGroup.getSelection() == null){
+			if (languageButtonGroup.getSelection() == null) {
 				showMessageDialog(btnPlayHangman, LANGUAGE_LABEL_TEXT);
 				return;
 			}
 			frame.dispose();
 
 			EventQueue.invokeLater(() -> {
-				GuesserView window = new GuesserView(userNameTextField.getText(), Language.SPANISH.toString(), sessionGuessCreator, guesser);
+				GuesserView window = new GuesserView(userNameTextField.getText(), Language.SPANISH.toString(),
+				                                     sessionGuessCreator, guesser);
 				window.frame.setVisible(true);
 			});
 		});
@@ -190,7 +189,7 @@ public class MainView extends View {
 			@Override
 			public void mouseDragged(MouseEvent e) {
 
-				frame.setLocation(e.getXOnScreen() - xMouse ,e.getYOnScreen() - yMouse);
+				frame.setLocation(e.getXOnScreen() - xMouse, e.getYOnScreen() - yMouse);
 			}
 		});
 
@@ -231,8 +230,7 @@ public class MainView extends View {
 	private void setLookAndFeel() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				| UnsupportedLookAndFeelException e) {
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

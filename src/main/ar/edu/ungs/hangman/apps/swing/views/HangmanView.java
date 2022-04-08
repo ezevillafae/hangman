@@ -19,6 +19,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 public final class HangmanView extends View {
+	private final String user;
+	private final String language;
+	private final SessionFinder sessionFinder;
+	private final SessionDefaultCreator creator;
+	private final SessionTryer tryer;
 	private JTextField characterField;
 	private JLabel hangmanTitle;
 	private JLabel[] characters;
@@ -29,16 +34,13 @@ public final class HangmanView extends View {
 	private JLabel lblClose;
 	private int xMouse;
 	private int yMouse;
-
-	private final String user;
-	private final String language;
-
-	private final SessionFinder sessionFinder;
-	private final SessionDefaultCreator creator;
-	private final SessionTryer tryer;
 	private JLabel lblAttemps;
 
-	public HangmanView(String user, String language, SessionFinder sessionFinder, SessionDefaultCreator creator, SessionTryer tryer) {
+	public HangmanView(String user,
+	                   String language,
+	                   SessionFinder sessionFinder,
+	                   SessionDefaultCreator creator,
+	                   SessionTryer tryer) {
 		super();
 
 		this.user = user;
@@ -67,7 +69,7 @@ public final class HangmanView extends View {
 
 		/* frame center */
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
+		frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
 
 		/* ----------  Image Hangman  ------------- */
 		hangmanImage = new JLabel();
@@ -80,20 +82,20 @@ public final class HangmanView extends View {
 		JButton btnTry = new JButton("Try");
 
 		btnTry.addActionListener(e -> {
-			if(!characterFieldIsEmpty()){
+			if (!characterFieldIsEmpty()) {
 				SessionResponse response;
 				try {
 
 					tryer.execute(user, characterField.getText().charAt(0));
 					response = this.sessionFinder.find(user);
 					printCharacters(response);
-					lblAttemps.setText(String.format("Intentos %s / %s",response.fails(),tryer.getMaxTries()));
+					lblAttemps.setText(String.format("Intentos %s / %s", response.fails(), tryer.getMaxTries()));
 					this.characterField.setText("");
 
 				} catch (SessionFinished sessionFinished) {
 					response = this.sessionFinder.find(user);
 					printCharacters(response);
-					lblAttemps.setText(String.format("Intentos %s / %s",response.fails(),tryer.getMaxTries()));
+					lblAttemps.setText(String.format("Intentos %s / %s", response.fails(), tryer.getMaxTries()));
 					showMessageDialog(btnTry, sessionFinished.getMessage());
 					dispose();
 				}
@@ -110,10 +112,11 @@ public final class HangmanView extends View {
 		characterField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				Character c = e.getKeyChar();
-				if (Character.isDigit(c) || !Character.isLetter(c))
+				char character = e.getKeyChar();
+				if (Character.isDigit(character) || !Character.isLetter(character)) {
 					e.consume();
-				e.setKeyChar(Character.toUpperCase(c));
+				}
+				e.setKeyChar(Character.toUpperCase(character));
 
 			}
 		});
@@ -174,9 +177,9 @@ public final class HangmanView extends View {
 		printCharacters(response);
 
 		/* -------------  label attemps --------  */
-		lblAttemps = new JLabel(String.format("Intentos %s / %s",response.fails(),tryer.getMaxTries()));
+		lblAttemps = new JLabel(String.format("Intentos %s / %s", response.fails(), tryer.getMaxTries()));
 		lblAttemps.setFont(customFont.deriveFont(14f));
-		lblAttemps.setBounds(25,100, 100,100);
+		lblAttemps.setBounds(25, 100, 100, 100);
 
 		frame.add(lblAttemps);
 
@@ -201,8 +204,7 @@ public final class HangmanView extends View {
 	private void setLookAndFeel() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				| UnsupportedLookAndFeelException e) {
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -212,13 +214,13 @@ public final class HangmanView extends View {
 	private void printCharacters(SessionResponse session) {
 		int xAxisTranslation = 0;
 		for (int i = 0; i < session.characters().length; i++) {
-			if(characters[i] == null){
+			if (characters[i] == null) {
 				this.characters[i] = new JLabel("_");
 				this.characters[i].setBounds(27 + xAxisTranslation, 200, 46, 14);
 				xAxisTranslation += 20;
 				frame.getContentPane().add(characters[i]);
-			}else{
-				if(session.characters()[i] != null) {
+			} else {
+				if (session.characters()[i] != null) {
 					this.characters[i].setText(session.characters()[i].toString());
 				}
 			}
@@ -234,8 +236,9 @@ public final class HangmanView extends View {
 		}
 
 		public void insertString(int offset, String text, AttributeSet attr) throws BadLocationException {
-			if (text == null)
+			if (text == null) {
 				return;
+			}
 			if ((getLength() + text.length()) <= max) {
 				super.insertString(offset, text, attr);
 			}

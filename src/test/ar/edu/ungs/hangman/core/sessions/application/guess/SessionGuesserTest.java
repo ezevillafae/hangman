@@ -1,12 +1,10 @@
 package ar.edu.ungs.hangman.core.sessions.application.guess;
 
-import ar.edu.ungs.hangman.core.sessions.application.SessionResponse;
 import ar.edu.ungs.hangman.core.sessions.domain.*;
 import ar.edu.ungs.hangman.core.words.domain.WordMother;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

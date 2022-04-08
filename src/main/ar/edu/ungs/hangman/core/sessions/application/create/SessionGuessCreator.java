@@ -2,8 +2,6 @@ package ar.edu.ungs.hangman.core.sessions.application.create;
 
 import ar.edu.ungs.hangman.core.sessions.domain.Session;
 import ar.edu.ungs.hangman.core.sessions.domain.SessionRepository;
-import ar.edu.ungs.hangman.core.words.domain.Difficult;
-import ar.edu.ungs.hangman.core.words.domain.Language;
 import ar.edu.ungs.hangman.core.words.domain.Word;
 
 public final class SessionGuessCreator {

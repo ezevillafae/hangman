@@ -37,8 +37,12 @@ public final class Word {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
 		Word word = (Word) o;
 		return Objects.equals(value, word.value) && language == word.language && difficult == word.difficult;
 	}
@@ -50,10 +54,6 @@ public final class Word {
 
 	@Override
 	public String toString() {
-		return "Word{" +
-				"value='" + value + '\'' +
-				", language=" + language +
-				", difficult=" + difficult +
-				'}';
+		return "Word{" + "value='" + value + '\'' + ", language=" + language + ", difficult=" + difficult + '}';
 	}
 }
