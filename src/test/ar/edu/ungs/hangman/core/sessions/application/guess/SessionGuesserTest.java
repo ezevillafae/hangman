@@ -30,7 +30,6 @@ final class SessionGuesserTest {
 	@Test
 	void should_guess_the_word() {
 		Session session = SessionMother.build("machine", WordMother.random());
-		SessionResponse expected = SessionResponse.map(session);
 
 		when(this.sessionFinder.find("machine")).thenReturn(session);
 
