@@ -36,6 +36,7 @@ public final class HangmanView extends View {
 	private final SessionFinder sessionFinder;
 	private final SessionDefaultCreator creator;
 	private final SessionTryer tryer;
+	private JLabel lblAttemps;
 
 	public HangmanView(String user, String language, SessionFinder sessionFinder, SessionDefaultCreator creator, SessionTryer tryer) {
 		super();
@@ -84,8 +85,9 @@ public final class HangmanView extends View {
 					tryer.execute(user, characterField.getText().charAt(0));
 					SessionResponse response = this.sessionFinder.find(user);
 					printCharacters(response);
+					lblAttemps.setText("Intentos : " + response.fails() + " / 6");
 					this.characterField.setText("");
-				} catch (SessionFinished sessionFinished){
+				} catch (SessionFinished sessionFinished) {
 					showMessageDialog(btnTry, sessionFinished.getMessage());
 					dispose();
 				}
@@ -164,6 +166,16 @@ public final class HangmanView extends View {
 		SessionResponse response = this.sessionFinder.find(user);
 		this.characters = new JLabel[response.characters().length];
 		printCharacters(response);
+
+		/* -------------  label attemps --------  */
+		lblAttemps = new JLabel("Intentos : " + response.fails() + " / 6");
+		lblAttemps.setFont(customFont.deriveFont(14f));
+		lblAttemps.setBounds(25,100, 100,100);
+
+
+		frame.add(lblAttemps);
+
+
 	}
 
 	private boolean characterFieldIsEmpty() {

@@ -14,6 +14,7 @@ public abstract class View {
 		JOptionPane.showMessageDialog(component, new JLabel(message));
 	}
 
+
 	public JFrame frame() {
 		return this.frame;
 	}

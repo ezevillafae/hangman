@@ -12,12 +12,20 @@ public final class DomainSessionTryer {
     public void execute(Session session, Character character, Integer maxTries) {
         Integer[] positions = session.positions(character);
 
+
+
         if (isFailedTry(positions)) {
             failTry(session, maxTries);
             return;
         }
 
         successfulTry(character, session, positions);
+        ensureSessionWinner(session);
+    }
+
+    private void ensureSessionWinner(Session session) {
+        if(session.isComplete())
+            throw new SessionFinished("game session ended: GAME WIN");
     }
 
     private void successfulTry(Character character, Session session, Integer[] positions) {
