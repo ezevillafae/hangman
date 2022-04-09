@@ -22,21 +22,6 @@ Pellentesque hendrerit orci non nisi placerat accumsan.
 
 ![](https://miro.medium.com/max/700/1*2nqUx2LoWvC2sK91HVZcFQ.png)
 
-#### Glossary
-
-- Word 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet odio nunc. Sed venenatis posuere
-  scelerisque. Pellentesque hendrerit orci non nisi placerat accumsan.
-- Word 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet odio nunc. Sed venenatis posuere
-  scelerisque. Pellentesque hendrerit orci non nisi placerat accumsan.
-- Word 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet odio nunc. Sed venenatis posuere
-  scelerisque. Pellentesque hendrerit orci non nisi placerat accumsan.
-- Word 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet odio nunc. Sed venenatis posuere
-  scelerisque. Pellentesque hendrerit orci non nisi placerat accumsan.
-- Word 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet odio nunc. Sed venenatis posuere
-  scelerisque. Pellentesque hendrerit orci non nisi placerat accumsan.
-- Word 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet odio nunc. Sed venenatis posuere
-  scelerisque. Pellentesque hendrerit orci non nisi placerat accumsan.
-
 #### Modules
 
 ###### Overview
