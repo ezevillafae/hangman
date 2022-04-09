@@ -156,7 +156,7 @@ public final class GuesserView extends View {
 
 	private void loadFont() {
 		try {
-			customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/resources/SansitaSwashed.ttf"));
+			customFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().getResourceAsStream("SansitaSwashed.ttf"));
 			GraphicsEnvironment gc = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			gc.registerFont(customFont);
 		} catch (FontFormatException | IOException e1) {
