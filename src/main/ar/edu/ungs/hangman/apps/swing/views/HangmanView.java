@@ -14,8 +14,6 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.Objects;
 
 public final class HangmanView extends View {
@@ -29,7 +27,6 @@ public final class HangmanView extends View {
 	private JLabel[] characters;
 	private JLabel lblUserName;
 	private JLabel hangmanImage;
-	private Font customFont;
 	private ImageIcon escaledIconClose;
 	private JLabel lblClose;
 	private int xMouse;
@@ -55,22 +52,6 @@ public final class HangmanView extends View {
 	}
 
 	private void initialize() {
-		setLookAndFeel();
-		loadFont();
-
-
-		/* ----------  Frame  ------------- */
-		frame.setUndecorated(true);
-		frame.setBackground(Color.WHITE);
-		frame.setResizable(false);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-
-		/* frame center */
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
-
 		/* ----------  Image Hangman  ------------- */
 		hangmanImage = new JLabel();
 		hangmanImage.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/hanged.png"))));
@@ -188,26 +169,6 @@ public final class HangmanView extends View {
 
 	private boolean characterFieldIsEmpty() {
 		return this.characterField.getText().length() == 0;
-	}
-
-	private void loadFont() {
-		try {
-			customFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().getResourceAsStream("SansitaSwashed.ttf"));
-			GraphicsEnvironment gc = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			gc.registerFont(customFont);
-		} catch (FontFormatException | IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	}
-
-	private void setLookAndFeel() {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 

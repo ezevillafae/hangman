@@ -21,7 +21,6 @@ public final class GuesserView extends View {
 	private final SessionGuessCreator creator;
 	private final SessionGuesser guesser;
 	private JTextField wordField;
-	private Font customFont;
 	private int xMouse;
 	private int yMouse;
 	private JLabel frameDrag;
@@ -43,21 +42,6 @@ public final class GuesserView extends View {
 	}
 
 	private void initialize() {
-		setLookAndFeel();
-		loadFont();
-
-		/* ---- Frame ------*/
-		frame.setUndecorated(true);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		/* frame center */
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
-
-		frame.getContentPane().setLayout(null);
-
-
 		/* -------- Frame Drag ---------- */
 		frameDrag = new JLabel("");
 
@@ -152,26 +136,6 @@ public final class GuesserView extends View {
 		hangmanBackgroundImage.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/hanged.png"))));
 		hangmanBackgroundImage.setBounds(197, 35, 450, 300);
 		frame.getContentPane().add(hangmanBackgroundImage);
-	}
-
-	private void loadFont() {
-		try {
-			customFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().getResourceAsStream("SansitaSwashed.ttf"));
-			GraphicsEnvironment gc = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			gc.registerFont(customFont);
-		} catch (FontFormatException | IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	}
-
-	private void setLookAndFeel() {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	private boolean validWord(String word) {
