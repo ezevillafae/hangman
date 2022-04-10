@@ -7,8 +7,8 @@ La clase [SessionFinder]() se encarga de buscar una [Session]() por nombre de us
 ### Diagrama de secuencia
 ````mermaid
 sequenceDiagram
-    parcipant SessionFinder
-    parcipant DomainSessionFinder
+    participant SessionFinder
+    participant DomainSessionFinder
     SessionFinder ->> DomainSessionFinder:User
     DomainSessionFinder ->> SessionFinder:SessionResponse
   
