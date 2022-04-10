@@ -9,11 +9,11 @@ La clase [SessionGuesser]() intenta adivinar la [Word]() probando caracteres mei
 ````mermaid
 sequenceDiagram
     machine SessionGuesser
-    SessionGuesser ->> SessionFinder:User_Machine
-    SessionFinder ->> SessionGuesser: Session session
-    SessionGuesser ->> DomainSessionTryer: Session session, Character character
-    SessionGuesser ->> DomainSessionGuesser :Session session, Character character
-    SessionResponse ->> SessionGuesser: Session session
+    SessionGuesser --> SessionFinder:User_Machine
+    SessionFinder --> SessionGuesser:Session
+    SessionGuesser --> DomainSessionTryer:Session,Character
+    SessionGuesser --> DomainSessionGuesser:Session,Character
+    SessionResponse --> SessionGuesser:Session
 
 ````
 
