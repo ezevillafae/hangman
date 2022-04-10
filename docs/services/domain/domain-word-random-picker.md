@@ -1,24 +1,21 @@
-# Caso de uso: Domain session tryer
+# Caso de uso: Domain word random picker
 
 ## Responsabilidad
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet odio nunc. Sed venenatis posuere
-scelerisque. Pellentesque hendrerit orci non nisi placerat accumsan.
+La responsabilidad de la clase [DomainWordRandomPicker]() es elegir una [Word]() aleatoria alojada en un [WordRepository](). 
+
 
 ## Solución técnica
 
 ### Diagrama de secuencia
 ````mermaid
 sequenceDiagram
-    Alice ->> Bob: Hello Bob, how are you?
-    Bob-->>John: How about you John?
-    Bob--x Alice: I am good thanks!
-    Bob-x John: I am good thanks!
-    Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
-
-    Bob-->Alice: Checking with John...
-    Alice->John: Yes... John, how are you?
+    participant DomainWordRandomPicker
+    participant WordRepository
+    
+    DomainWordRandomPicker ->> WordRepository: busca por dificultad y lenguaje
+    WordRepository -->> DomainWordRandomPicker: Conjunto de Word 
+    Note left of DomainWordRandomPicker: Luego se elije una <br/> Word aleatoria 
 ````
 
 ### Dependencias
-- [DomainSessionFinder]()
-- [SessionRepository]()
+- [WordRepository]()

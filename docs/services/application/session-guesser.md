@@ -1,4 +1,4 @@
-# Caso de uso: Domain session tryer
+# Caso de uso: Session Guesser
 
 ## Responsabilidad
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet odio nunc. Sed venenatis posuere
@@ -21,4 +21,4 @@ sequenceDiagram
 
 ### Dependencias
 - [DomainSessionFinder]()
-- [SessionRepository]()
+- [DomainSessionTryer]()

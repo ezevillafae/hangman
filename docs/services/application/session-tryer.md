@@ -1,24 +1,23 @@
-# Caso de uso: Domain session tryer
+# Caso de uso: session tryer
 
 ## Responsabilidad
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet odio nunc. Sed venenatis posuere
-scelerisque. Pellentesque hendrerit orci non nisi placerat accumsan.
+La clase SessionTryer busca la [Session]() de un usuario pidiendosela a [DomainSessionFinder]() para luego pedirle al [DomainSessionTryer]()
+que intente con una letra teniendo en cuenta los intentos maximos en la Session encontrada.
 
 ## Solución técnica
 
 ### Diagrama de secuencia
 ````mermaid
 sequenceDiagram
-    Alice ->> Bob: Hello Bob, how are you?
-    Bob-->>John: How about you John?
-    Bob--x Alice: I am good thanks!
-    Bob-x John: I am good thanks!
-    Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
-
-    Bob-->Alice: Checking with John...
-    Alice->John: Yes... John, how are you?
+    participant SessionTryer
+    participant DomainSessionFinder
+    participant DomainSessionTryer
+    SessionTryer ->> DomainSessionFinder : find(user);
+    DomainSessionFinder -->> SessionTryer : session
+    SessionTryer ->> DomainSessionTryer : execute(session, character, MAX_TRIES);
+    
 ````
 
 ### Dependencias
+- [DomainSessionTryer]()
 - [DomainSessionFinder]()
-- [SessionRepository]()

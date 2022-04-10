@@ -1,22 +1,23 @@
 # Caso de uso: Domain session tryer
 
 ## Responsabilidad
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet odio nunc. Sed venenatis posuere
-scelerisque. Pellentesque hendrerit orci non nisi placerat accumsan.
+La clase [DomainSessionTryer]() se encarga de pedirle a [Session]() que intente con una letra, al obtener
+una respuesta se determina si fue un intento exitoso, un intento fallido o si la sesión termina.
+En el caso de que termine la session se arroja una excepción [SessionFinished](). Una session puede terminar
+si se completó la palabra o si se terminaron los intentos.
 
 ## Solución técnica
 
 ### Diagrama de secuencia
 ````mermaid
 sequenceDiagram
-    Alice ->> Bob: Hello Bob, how are you?
-    Bob-->>John: How about you John?
-    Bob--x Alice: I am good thanks!
-    Bob-x John: I am good thanks!
-    Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
-
-    Bob-->Alice: Checking with John...
-    Alice->John: Yes... John, how are you?
+    participant DomainSessionTryer
+    participant Session
+    
+    DomainSessionTryer ->>  Session: intenta con la letra 'a'
+    Session -->> DomainSessionTryer: posiciones de la letra 'a'
+    DomainSessionTryer ->>  Session: guarda la letra 'a' en esas posiciones
+    
 ````
 
 ### Dependencias
