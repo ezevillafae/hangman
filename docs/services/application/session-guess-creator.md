@@ -9,6 +9,7 @@ La clase [SessionGuessCreator]() es la responsable de crear una [Session]() con 
 ````mermaid
 sequenceDiagram
     machine SessionGuessCreator
+    SessionGuessCreator ->> Session User name, Word word
     SessionGuessCreator ->> SessionRepository: Session session
 ````
 

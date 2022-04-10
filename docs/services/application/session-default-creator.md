@@ -11,7 +11,9 @@ el cual es seleccionado mediante [DomainWordRandomPicker](), finalmente la sesiÃ
 sequenceDiagram
     participant SessionDefaulCreator
     participant DomainWordPiker
-    DomainWordRandomPicker ->>  SessionDefaulCreator: Word word
+    SessionDefaulCreator ->> DomainWordPicker: Dificult dificult, Language language
+    DomainWordPicker ->> SessionDefaulCreator: Word word
+    SessionDefaulCreator ->> Session: User name, Word word
     SessionDefaulCreator ->> SessionRepository: Session session
 ````
 
