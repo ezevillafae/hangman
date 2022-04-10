@@ -32,7 +32,7 @@ public abstract class View {
 
 	private void loadFont() {
 		try {
-			customFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("SansitaSwashed.ttf")));
+			customFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Bangla MN.ttf")));
 			GraphicsEnvironment gc = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			gc.registerFont(customFont);
 		} catch (FontFormatException | IOException e1) {

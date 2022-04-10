@@ -27,11 +27,12 @@ public final class HangmanView extends View {
 	private JLabel[] characters;
 	private JLabel lblUserName;
 	private JLabel hangmanImage;
-	private ImageIcon escaledIconClose;
+	private ImageIcon[] hangmanBackgrounds;
 	private JLabel lblClose;
 	private int xMouse;
 	private int yMouse;
 	private JLabel lblAttemps;
+	private static Integer nActualBackground = 1;
 
 	public HangmanView(String user,
 	                   String language,
@@ -47,16 +48,12 @@ public final class HangmanView extends View {
 		this.tryer = tryer;
 
 		this.creator.create(user, Difficult.EASY, Language.SPANISH);
-
+		loadBackgrounds();
 		initialize();
 	}
 
 	private void initialize() {
-		/* ----------  Image Hangman  ------------- */
-		hangmanImage = new JLabel();
-		hangmanImage.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/hanged.png"))));
-		hangmanImage.setBounds(196, 39, 434, 261);
-		frame.getContentPane().add(hangmanImage);
+
 
 
 		/* ----------  Try Button   ------------- */
@@ -71,12 +68,14 @@ public final class HangmanView extends View {
 					response = this.sessionFinder.find(user);
 					printCharacters(response);
 					lblAttemps.setText(String.format("Intentos %s / %s", response.fails(), tryer.getMaxTries()));
+					this.hangmanImage.setIcon(this.hangmanBackgrounds[response.fails()]);
 					this.characterField.setText("");
 
 				} catch (SessionFinished sessionFinished) {
 					response = this.sessionFinder.find(user);
 					printCharacters(response);
 					lblAttemps.setText(String.format("Intentos %s / %s", response.fails(), tryer.getMaxTries()));
+					this.hangmanImage.setIcon(this.hangmanBackgrounds[response.fails()]);
 					showMessageDialog(btnTry, sessionFinished.getMessage());
 					dispose();
 				}
@@ -105,17 +104,11 @@ public final class HangmanView extends View {
 		characterField.setColumns(10);
 		frame.getContentPane().add(characterField);
 
-
-		/* ----------  hangmanTitle  ------------- */
-		hangmanTitle = new JLabel("Hangman");
-		hangmanTitle.setFont(customFont.deriveFont(24f));
-		hangmanTitle.setBounds(25, 60, 112, 39);
-		frame.getContentPane().add(hangmanTitle);
-
 		/* ----------  label userName  ------------- */
 		lblUserName = new JLabel(this.user);
 		lblUserName.setFont(customFont.deriveFont(14f));
-		lblUserName.setBounds(25, 110, 124, 14);
+		lblUserName.setForeground(Color.white);
+		lblUserName.setBounds(15, 30, 124, 14);
 		frame.getContentPane().add(lblUserName);
 
 		/* ----------  frameDrag  ------------- */
@@ -140,15 +133,15 @@ public final class HangmanView extends View {
 
 		/* ----------  Button close   ------------- */
 		lblClose = new JLabel("X");
-		lblClose.setFont(customFont.deriveFont(20f));
+		lblClose.setFont(customFont.deriveFont(14f));
+		lblClose.setForeground(Color.white);
 		lblClose.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);
 			}
 		});
-		lblClose.setBounds(411, 11, 29, 17);
-		lblClose.setIcon(escaledIconClose);
+		lblClose.setBounds(420, 11, 29, 17);
 		frame.getContentPane().add(lblClose);
 
 
@@ -160,11 +153,25 @@ public final class HangmanView extends View {
 		/* -------------  label attemps --------  */
 		lblAttemps = new JLabel(String.format("Intentos %s / %s", response.fails(), tryer.getMaxTries()));
 		lblAttemps.setFont(customFont.deriveFont(14f));
-		lblAttemps.setBounds(25, 100, 100, 100);
+		lblAttemps.setForeground(Color.white);
+		lblAttemps.setBounds(350, -10, 100, 100);
 
 		frame.add(lblAttemps);
 
+		/* ----------  Image Hangman  ------------- */
+		hangmanImage = new JLabel();
+		hangmanImage.setIcon(this.hangmanBackgrounds[response.fails()]);
+		hangmanImage.setBounds(0, 0, 450, 300);
+		frame.getContentPane().add(hangmanImage);
 
+
+	}
+
+	private void loadBackgrounds() {
+		this.hangmanBackgrounds = new ImageIcon[7];
+		for (int i = 0; i < this.hangmanBackgrounds.length; i++){
+			this.hangmanBackgrounds[i] = new ImageIcon(Objects.requireNonNull(getClass().getResource("/hangman" + (i+1) +".jpg")));
+		}
 	}
 
 	private boolean characterFieldIsEmpty() {
@@ -177,8 +184,10 @@ public final class HangmanView extends View {
 		for (int i = 0; i < session.characters().length; i++) {
 			if (characters[i] == null) {
 				this.characters[i] = new JLabel("_");
-				this.characters[i].setBounds(27 + xAxisTranslation, 200, 46, 14);
-				xAxisTranslation += 20;
+				this.characters[i].setBounds(27 + xAxisTranslation, 200, 60, 60);
+				this.characters[i].setFont(customFont.deriveFont(15f));
+				this.characters[i].setForeground(Color.white);
+				xAxisTranslation += 30;
 				frame.getContentPane().add(characters[i]);
 			} else {
 				if (session.characters()[i] != null) {
