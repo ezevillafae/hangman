@@ -8,9 +8,10 @@ La clase [SessionGuesser]() intenta adivinar la [Word]() probando caracteres mei
 ### Diagrama de secuencia
 ````mermaid
 sequenceDiagram
-    machine SessionGuesser
+    participant SessionGuesser
     parcitipant DomainSessionFinder
 	participant DomainSessionTryer
+	participant SessionResponse
     SessionGuesser ->> SessionFinder:User_Machine
     SessionFinder ->> SessionGuesser:Session
     SessionGuesser ->> DomainSessionTryer:Session,Character

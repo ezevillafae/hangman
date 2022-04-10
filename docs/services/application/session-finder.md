@@ -11,7 +11,7 @@ sequenceDiagram
     parcipant SessionResponse
     SessionFinder ->> SessionResponse:Username
     SessionResponse ->> DomainSessionFinder:Username
-    DomainSessionFinder ->> SessionResponse:Session
+    SessionFinder ->> SessionResponse:Session
     SessionResponse ->> SessionFinder:SessionResponse
   
 ````
