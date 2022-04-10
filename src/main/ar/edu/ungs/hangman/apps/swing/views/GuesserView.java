@@ -15,7 +15,6 @@ import java.util.Objects;
 
 public final class GuesserView extends View {
 	private final String user;
-	private final String language;
 	private final String winnerText = "the machine guessed!";
 	private final String looserText = "the machine has failed";
 	private final SessionGuessCreator creator;
@@ -30,11 +29,10 @@ public final class GuesserView extends View {
 	private JLabel lblUserName;
 	private JLabel hangmanBackgroundImage;
 
-	public GuesserView(String user, String language, SessionGuessCreator creator, SessionGuesser guesser) {
+	public GuesserView(String user, SessionGuessCreator creator, SessionGuesser guesser) {
 		super();
 
 		this.user = user;
-		this.language = language;
 		this.creator = creator;
 		this.guesser = guesser;
 
@@ -101,12 +99,10 @@ public final class GuesserView extends View {
 				wordField.setEnabled(false);
 				btnStart.setEnabled(false);
 
-
 				try {
 					guesser.guess();
-					showMessageDialog(btnStart, winnerText);
 				} catch (SessionFinished sessionFinished) {
-					showMessageDialog(btnStart, looserText);
+					showMessageDialog(btnStart, sessionFinished.getMessage());
 				} finally {
 					dispose();
 				}

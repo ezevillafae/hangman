@@ -25,9 +25,8 @@ public class MainView extends View {
 	private static final String GUESSER_BUTTON_TEXT = "JUGAR AL ADIVINADOR";
 	private static final String USER_LABEL_TEXT = "Ingrese su nombre";
 	private static final String LANGUAGE_LABEL_TEXT = "Seleccione el lenguaje con el que desea jugar";
+	private static final String DIFFICULT_LABEL_TEXT = "Seleccione la dificultad con el que desea jugar";
 
-	private static final String ENGLISH_RADIO_BUTTON_TEXT = "Inglés";
-	private static final String SPANISH_RADIO_BUTTON_TEXT = "Español";
 	protected int xMouse;
 	protected int yMouse;
 	private JTextField userNameTextField;
@@ -35,6 +34,9 @@ public class MainView extends View {
 	private JLabel btnClose;
 	private JRadioButton rdbtnEnglish;
 	private JRadioButton rdbtnSpanish;
+	private JRadioButton rdbtnEasy;
+	private JRadioButton rdbtnMedium;
+	private JRadioButton rdbtnHard;
 	private JButton btnPlayHangman;
 	private JButton btnPlayGuesser;
 	private JLabel frameDrag;
@@ -42,6 +44,7 @@ public class MainView extends View {
 	private JLabel logoUngs;
 	private JLabel titleHangman;
 	private ButtonGroup languageButtonGroup;
+	private ButtonGroup difficultButtonGroup;
 
 
 	private SessionDefaultCreator sessionDefaultCreator;
@@ -99,22 +102,40 @@ public class MainView extends View {
 
 		frame.getContentPane().add(btnClose);
 
+		/* ------ Difficult buttons  ----------*/
+		difficultButtonGroup = new ButtonGroup();
+
+		rdbtnEasy = new JRadioButton("Facil");
+		rdbtnEasy.setBounds(175, 200, 100, 23);
+		rdbtnEasy.getModel().setGroup(difficultButtonGroup);
+		frame.getContentPane().add(rdbtnEasy);
+
+		rdbtnMedium = new JRadioButton("Medio");
+		rdbtnMedium.setBounds(250, 200, 100, 23);
+		rdbtnMedium.getModel().setGroup(difficultButtonGroup);
+		frame.getContentPane().add(rdbtnMedium);
+
+		rdbtnHard = new JRadioButton("Dificil");
+		rdbtnHard.setBounds(330, 200, 100, 23);
+		rdbtnHard.getModel().setGroup(difficultButtonGroup);
+		frame.getContentPane().add(rdbtnHard);
+
 		/* ------ Language buttons  ----------*/
 		languageButtonGroup = new ButtonGroup();
 
 		rdbtnEnglish = new JRadioButton("Ingl\u00E9s");
-		rdbtnEnglish.setBounds(185, 217, 109, 23);
+		rdbtnEnglish.setBounds(175, 220, 109, 23);
 		frame.getContentPane().add(rdbtnEnglish);
 
 		rdbtnSpanish = new JRadioButton("Espa\u00F1ol");
-		rdbtnSpanish.setBounds(321, 217, 109, 23);
+		rdbtnSpanish.setBounds(330, 220, 109, 23);
 		rdbtnEnglish.getModel().setGroup(languageButtonGroup);
 		rdbtnSpanish.getModel().setGroup(languageButtonGroup);
 		frame.getContentPane().add(rdbtnSpanish);
 
 		/* ------ play Buttons ----------*/
 		btnPlayHangman = new JButton("Jugar Ahorcado");
-		btnPlayHangman.setBounds(184, 247, 126, 23);
+		btnPlayHangman.setBounds(184, 260, 126, 23);
 
 		btnPlayHangman.addActionListener(e -> {
 			if (userNameTextField.getText().isEmpty()) {
@@ -125,11 +146,23 @@ public class MainView extends View {
 				showMessageDialog(btnPlayHangman, LANGUAGE_LABEL_TEXT);
 				return;
 			}
+
+			if (difficultButtonGroup.getSelection() == null) {
+				showMessageDialog(btnPlayHangman, DIFFICULT_LABEL_TEXT);
+				return;
+			}
+
+			String language = getLanguage();
+			String difficult = getDifficult();
 			frame.dispose();
 
 			EventQueue.invokeLater(() -> {
-				HangmanView window = new HangmanView(userNameTextField.getText(), Language.SPANISH.toString(),
-				                                     sessionFinder, sessionDefaultCreator, tryer);
+				HangmanView window = new HangmanView(userNameTextField.getText(),
+				                                     language,
+				                                     difficult,
+				                                     sessionFinder,
+				                                     sessionDefaultCreator,
+				                                     tryer);
 				window.frame.setVisible(true);
 			});
 		});
@@ -137,22 +170,20 @@ public class MainView extends View {
 		frame.getContentPane().add(btnPlayHangman);
 
 		btnPlayGuesser = new JButton("Jugar Adivinador");
-		btnPlayGuesser.setBounds(321, 247, 119, 23);
+		btnPlayGuesser.setBounds(321, 260, 119, 23);
 
 		btnPlayGuesser.addActionListener(e -> {
 			if (userNameTextField.getText().isEmpty()) {
 				showMessageDialog(userNameTextField, WARNING);
 				return;
 			}
-			if (languageButtonGroup.getSelection() == null) {
-				showMessageDialog(btnPlayHangman, LANGUAGE_LABEL_TEXT);
-				return;
-			}
+
 			frame.dispose();
 
 			EventQueue.invokeLater(() -> {
-				GuesserView window = new GuesserView(userNameTextField.getText(), Language.SPANISH.toString(),
-				                                     sessionGuessCreator, guesser);
+				GuesserView window = new GuesserView(userNameTextField.getText(),
+				                                     sessionGuessCreator,
+				                                     guesser);
 				window.frame.setVisible(true);
 			});
 		});
@@ -203,6 +234,13 @@ public class MainView extends View {
 		frame.getContentPane().add(logoUngs);
 	}
 
+	private String getDifficult() {
+		return rdbtnEasy.isSelected() ? "EASY" : rdbtnMedium.isSelected() ? "MEDIUM" : "HARD";
+	}
+
+	private String getLanguage() {
+		return rdbtnEnglish.isSelected() ? "ENGLISH" : "SPANISH";
+	}
 
 	public JFrame frame() {
 		return this.frame;

@@ -12,13 +12,12 @@ import javax.swing.*;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
-import java.awt.*;
 import java.awt.event.*;
+import java.util.Locale;
 import java.util.Objects;
 
 public final class HangmanView extends View {
 	private final String user;
-	private final String language;
 	private final SessionFinder sessionFinder;
 	private final SessionDefaultCreator creator;
 	private final SessionTryer tryer;
@@ -35,18 +34,18 @@ public final class HangmanView extends View {
 
 	public HangmanView(String user,
 	                   String language,
+	                   String difficult,
 	                   SessionFinder sessionFinder,
 	                   SessionDefaultCreator creator,
 	                   SessionTryer tryer) {
 		super();
 
 		this.user = user;
-		this.language = language;
 		this.sessionFinder = sessionFinder;
 		this.creator = creator;
 		this.tryer = tryer;
 
-		this.creator.create(user, Difficult.EASY, Language.SPANISH);
+		this.creator.create(user, Difficult.valueOf(difficult), Language.valueOf(language.toUpperCase(Locale.ROOT)));
 
 		initialize();
 	}
