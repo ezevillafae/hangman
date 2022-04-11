@@ -1,7 +1,7 @@
 # Application Design Document
 
 ## Problema a Resolver
-Implementar una aplicación para jugar al juego clásico del“ahorcado. La aplicación selecciona una palabra de su lista de palabras, y el usuario debe adivinar la palabra arriesgando letras una por una.
+Implementar una aplicación para jugar al juego clásico del "ahorcado". La aplicación selecciona una palabra de su lista de palabras, y el usuario debe adivinar la palabra arriesgando letras una por una.
 
 ## Requerimientos
 - Lista de palabras
@@ -23,7 +23,7 @@ La **arquitectura hexagonal**, o arquitectura de puertos y adaptadores, es un pa
 ![Clean Architecture](https://miro.medium.com/max/700/1*2nqUx2LoWvC2sK91HVZcFQ.png "Clean Architecture")
 
 ### Ventajas
-##### Indepencia de Frameworks
+##### Independencia de Frameworks
 La arquitectura no depende de la existencia de alguna libreria o frameworks de software cargado de funciones. Esto le permite utilizar dichos frameworks como herramientas.
 
 ##### Testing
@@ -171,14 +171,14 @@ Un repositorio, como dice la palabra, es una abstracción a la persistencia cole
 
 ### Servicios de Aplicación
 Representan de forma atómica un caso de uso de nuestro sistema.
-1. [SessionDefaulCreator](https://github.com/fraruiz/hangman/blob/master/docs/services/application/session-default-creator.md "SessionDefaulCreator")
+1. [SessionDefaultCreator](https://github.com/fraruiz/hangman/blob/master/docs/services/application/session-default-creator.md "SessionDefaultCreator")
 2. [SessionFinder](https://github.com/fraruiz/hangman/blob/master/docs/services/application/session-finder.md "SessionFinder")
 3. [SessionGuessCreator](https://github.com/fraruiz/hangman/blob/master/docs/services/application/session-guess-creator.md "SessionGuessCreator")
 4. [SessionGuesser](https://github.com/fraruiz/hangman/blob/master/docs/services/application/session-guesser.md "SessionGuesser")
 5. [SessionTryer](https://github.com/fraruiz/hangman/blob/master/docs/services/application/session-tryer.md "SessionTryer")
 
 ### Servicios de Dominio
-Los servicios de domino representan una agrupación de lógica de negocio que podremos reutilizar desde múltiples Servicios de Aplicación.
+Los servicios de dominio representan una agrupación de lógica de negocio que podremos reutilizar desde múltiples Servicios de Aplicación.
 1. [DomainSessionFinder](https://github.com/fraruiz/hangman/blob/master/docs/services/domain/domain-session-finder.md "DomainSessionFinder")
 2. [DomainSessionTryer](https://github.com/fraruiz/hangman/blob/master/docs/services/domain/domain-session-tryer.md "DomainSessionTryer")
 3. [DomainWordRandomPicker](https://github.com/fraruiz/hangman/blob/master/docs/services/domain/domain-word-random-picker.md "DomainWordRandomPicker")
