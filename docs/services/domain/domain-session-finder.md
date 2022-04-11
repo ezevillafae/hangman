@@ -2,7 +2,7 @@
 
 ## Responsabilidad
 La clase [DomainSessionFinder]() tiene la responsabilidad de buscar una [Session]() alojada en un [SessionRepository]()
- indicandole un nombre de usuario. En caso de que la session no exista se arrojará una excepción [SessionNotExists]()
+ indicándole un nombre de usuario. En caso de que la session no exista se arrojará una excepción [SessionNotExists]()
 
 ## Solución técnica
 

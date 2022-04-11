@@ -1,7 +1,8 @@
 # Caso de uso: Session Guesser
 
 ## Responsabilidad
-La clase [SessionGuesser]() intenta adivinar la [Word]() probando caracteres meidante [DomainSessionTryer]() del usuario por defecto Machine.
+La clase [SessionGuesser]() intenta adivinar la [Word]() probando caracteres mediante [DomainSessionTryer]() del 
+usuario por defecto Machine.
 
 ## Solución técnica
 
@@ -9,12 +10,14 @@ La clase [SessionGuesser]() intenta adivinar la [Word]() probando caracteres mei
 ````mermaid
 sequenceDiagram
     participant SessionGuesser
-    parcitipant DomainSessionFinder
-    participant DomainSessionTryher
-    SessionGuesser ->> DomainSessionFinder:find(user)
-    DomainSessionFinder ->> SessionGuesser:Session
-    SessionGuesser ->> DomainSessionTryher: execute(session,character, max_tries)
-    
+    participant DomainSessionFinder
+    participant DomainSessionTryer
+    SessionGuesser ->> DomainSessionFinder : find(USER_MACHINE)
+    DomainSessionFinder -->> SessionGuesser: session
+    loop 
+        SessionGuesser ->> DomainSessionTryer: execute(session, character, max_tries)
+    end
+    Note left of SessionGuesser: Luego se crea un SessionResponse
 ````
 
 ### Dependencias
