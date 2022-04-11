@@ -1,4 +1,4 @@
-# Caso de uso: Session Defaul Creator
+# Caso de uso: Session Default Creator
 
 ## Responsabilidad
 La clase [SessionDefaultCreator]() se encarga de crear una nueva [Session]() indicando nombre de usuario y un [Word](), 
@@ -10,11 +10,10 @@ el cual es seleccionado mediante [DomainWordRandomPicker](), finalmente la sesiÃ
 ````mermaid
 sequenceDiagram
     participant SessionDefaulCreator
-    participant DomainWordPiker
-    SessionDefaulCreator ->> DomainWordPicker: Dificult dificult, Language language
-    DomainWordPicker ->> SessionDefaulCreator: Word word
-    SessionDefaulCreator ->> Session: User name, Word word
-    SessionDefaulCreator ->> SessionRepository: Session session
+    participant DomainWordPicker
+    SessionDefaulCreator ->> DomainWordPicker: pick(difficult, language)
+    DomainWordPicker -->> SessionDefaulCreator: Word
+    SessionDefaulCreator ->> SessionRepository: save(session)
 ````
 
 ### Dependencias

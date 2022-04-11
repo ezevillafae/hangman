@@ -1,7 +1,8 @@
 # Caso de uso: Session Finder
 
 ## Responsabilidad
-La clase [SessionFinder]() se encarga de buscar una [Session]() por nombre de usuario.
+La clase [SessionFinder]() tiene la única responsabilidad de crear un [SessionResponse]() luego de haberle pedido a [DomainSessionFinder]()
+que encuentre una [Session]().
 ## Solución técnica
 
 ### Diagrama de secuencia
@@ -9,9 +10,9 @@ La clase [SessionFinder]() se encarga de buscar una [Session]() por nombre de us
 sequenceDiagram
     participant SessionFinder
     participant DomainSessionFinder
-    SessionFinder ->> DomainSessionFinder:User
-    DomainSessionFinder ->> SessionFinder:SessionResponse
-  
+    SessionFinder ->> DomainSessionFinder: user
+    DomainSessionFinder -->> SessionFinder: session
+    Note left of SessionFinder: Luego se crea el SessionResponse
 ````
 
 ### Dependencias
