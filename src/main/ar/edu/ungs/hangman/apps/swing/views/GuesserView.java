@@ -129,8 +129,8 @@ public final class GuesserView extends View {
 
 		/*-------- background hangman ------------*/
 		hangmanBackgroundImage = new JLabel("");
-		hangmanBackgroundImage.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/hanged.png"))));
-		hangmanBackgroundImage.setBounds(197, 35, 450, 300);
+		hangmanBackgroundImage.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/hangman1.jpg"))));
+		hangmanBackgroundImage.setBounds(0, 0, 450, 300);
 		frame.getContentPane().add(hangmanBackgroundImage);
 	}
 

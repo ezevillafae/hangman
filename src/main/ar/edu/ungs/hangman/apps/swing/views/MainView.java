@@ -40,7 +40,7 @@ public class MainView extends View {
 	private JButton btnPlayHangman;
 	private JButton btnPlayGuesser;
 	private JLabel frameDrag;
-	private JPanel panel;
+	private JLabel hangmanBackground;
 	private JLabel logoUngs;
 	private JLabel titleHangman;
 	private ButtonGroup languageButtonGroup;
@@ -85,6 +85,7 @@ public class MainView extends View {
 
 		/* ------ label user name  ----------*/
 		lblUserName = new JLabel(USER_LABEL_TEXT);
+		lblUserName.setFont(customFont.deriveFont(10f));
 		lblUserName.setBounds(184, 141, 126, 14);
 		frame.getContentPane().add(lblUserName);
 
@@ -106,17 +107,17 @@ public class MainView extends View {
 		difficultButtonGroup = new ButtonGroup();
 
 		rdbtnEasy = new JRadioButton("Facil");
-		rdbtnEasy.setBounds(175, 200, 100, 23);
+		rdbtnEasy.setBounds(175, 200, 50, 23);
 		rdbtnEasy.getModel().setGroup(difficultButtonGroup);
 		frame.getContentPane().add(rdbtnEasy);
 
 		rdbtnMedium = new JRadioButton("Medio");
-		rdbtnMedium.setBounds(250, 200, 100, 23);
+		rdbtnMedium.setBounds(250, 200, 70, 23);
 		rdbtnMedium.getModel().setGroup(difficultButtonGroup);
 		frame.getContentPane().add(rdbtnMedium);
 
 		rdbtnHard = new JRadioButton("Dificil");
-		rdbtnHard.setBounds(330, 200, 100, 23);
+		rdbtnHard.setBounds(330, 200, 50, 23);
 		rdbtnHard.getModel().setGroup(difficultButtonGroup);
 		frame.getContentPane().add(rdbtnHard);
 
@@ -211,20 +212,11 @@ public class MainView extends View {
 			}
 		});
 
-		/*------------------------*/
-		panel = new JPanel();
-		panel.setBackground(Color.CYAN);
-		panel.setBounds(0, 0, 174, 300);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
-
-
-		/* ------ titleHangman ----------*/
-		titleHangman = new JLabel("Hangman");
-		titleHangman.setHorizontalAlignment(SwingConstants.CENTER);
-		titleHangman.setFont(customFont.deriveFont(30f));
-		titleHangman.setBounds(0, 110, 174, 53);
-		panel.add(titleHangman);
+		/*----------- main Panel hangman background -------------*/
+		hangmanBackground = new JLabel();
+		hangmanBackground.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/panelPrincipal.jpg"))));
+		hangmanBackground.setBounds(0, 0, 174, 300);
+		frame.getContentPane().add(hangmanBackground);
 
 
 		/* ------ logo ungs ----------*/
