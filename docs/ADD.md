@@ -15,8 +15,6 @@ palabras en inglés.
 
 ## Solución Técnica
 
-### Descripción de la solución
-
 ### Arquitectura
 La **arquitectura hexagonal**, o arquitectura de puertos y adaptadores, es un patrón arquitectónico utilizado en el diseño de software. Su objetivo es crear componentes de aplicaciones débilmente acoplados que puedan conectarse fácilmente a su entorno de software por medio de puertos y adaptadores. La misma está conformada por cuatro capas importantes: Domain; Application; Infrastructure; App
 
@@ -182,3 +180,10 @@ Los servicios de dominio representan una agrupación de lógica de negocio que p
 1. [DomainSessionFinder](https://github.com/fraruiz/hangman/blob/master/docs/services/domain/domain-session-finder.md "DomainSessionFinder")
 2. [DomainSessionTryer](https://github.com/fraruiz/hangman/blob/master/docs/services/domain/domain-session-tryer.md "DomainSessionTryer")
 3. [DomainWordRandomPicker](https://github.com/fraruiz/hangman/blob/master/docs/services/domain/domain-word-random-picker.md "DomainWordRandomPicker")
+
+## UML
+### Apps
+![Apps UML](https://github.com/fraruiz/hangman/blob/master/docs/assets/apps.png?raw=true)
+
+### Core
+![Core UML](https://github.com/fraruiz/hangman/blob/master/docs/assets/core.png?raw=true)
