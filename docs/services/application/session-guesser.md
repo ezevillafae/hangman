@@ -14,7 +14,6 @@ sequenceDiagram
     SessionGuesser ->> DomainSessionFinder:find(user)
     DomainSessionFinder ->> SessionGuesser:Session
     SessionGuesser ->> DomainSessionTryher: execute(session,character, max_tries)
-    SessionGuesser ->> DomainSessionTryher: execute(session,consonants, max_tries)
     
 ````
 
