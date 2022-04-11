@@ -1,4 +1,4 @@
-# Caso de uso: session tryer
+# Caso de uso: Session Tryer
 
 ## Responsabilidad
 La clase SessionTryer busca la [Session]() de un usuario pidiendosela a [DomainSessionFinder]() para luego pedirle al [DomainSessionTryer]()
