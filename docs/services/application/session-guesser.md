@@ -10,14 +10,12 @@ La clase [SessionGuesser]() intenta adivinar la [Word]() probando caracteres mei
 sequenceDiagram
     participant SessionGuesser
     parcitipant DomainSessionFinder
-	participant DomainSessionTryer
-	participant SessionResponse
-    SessionGuesser ->> SessionFinder:User_Machine
-    SessionFinder ->> SessionGuesser:Session
-    SessionGuesser ->> DomainSessionTryer:Session,Character
-    SessionGuesser ->> DomainSessionGuesser:Session,Character
-    SessionResponse ->> SessionGuesser:Session
-
+    participant DomainSessionTryher
+    SessionGuesser ->> DomainSessionFinder:find(user)
+    DomainSessionFinder ->> SessionGuesser:Session
+    SessionGuesser ->> DomainSessionTryher: execute(session,character, max_tries)
+    SessionGuesser ->> DomainSessionTryher: execute(session,consonants, max_tries)
+    
 ````
 
 ### Dependencias
