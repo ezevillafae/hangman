@@ -1,12 +1,12 @@
 package ar.edu.ungs.hangman.apps.swing.views;
 
-import ar.edu.ungs.hangman.core.sessions.application.SessionResponse;
-import ar.edu.ungs.hangman.core.sessions.application.create.SessionDefaultCreator;
-import ar.edu.ungs.hangman.core.sessions.application.find.SessionFinder;
-import ar.edu.ungs.hangman.core.sessions.application.tries.SessionTryer;
-import ar.edu.ungs.hangman.core.sessions.domain.SessionFinished;
-import ar.edu.ungs.hangman.core.words.domain.Difficult;
-import ar.edu.ungs.hangman.core.words.domain.Language;
+import ar.edu.ungs.hangman.modules.sessions.application.SessionResponse;
+import ar.edu.ungs.hangman.modules.sessions.application.create.SessionDefaultCreator;
+import ar.edu.ungs.hangman.modules.sessions.application.find.SessionFinder;
+import ar.edu.ungs.hangman.modules.sessions.application.tries.SessionTryer;
+import ar.edu.ungs.hangman.modules.sessions.domain.SessionFinished;
+import ar.edu.ungs.hangman.modules.words.domain.Difficult;
+import ar.edu.ungs.hangman.modules.words.domain.Language;
 
 import javax.swing.*;
 import javax.swing.text.AttributeSet;

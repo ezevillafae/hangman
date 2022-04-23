@@ -2,18 +2,18 @@ package ar.edu.ungs.hangman.apps.swing;
 
 import ar.edu.ungs.hangman.apps.shared.Application;
 import ar.edu.ungs.hangman.apps.swing.views.MainView;
-import ar.edu.ungs.hangman.core.sessions.application.create.SessionDefaultCreator;
-import ar.edu.ungs.hangman.core.sessions.application.create.SessionGuessCreator;
-import ar.edu.ungs.hangman.core.sessions.application.find.SessionFinder;
-import ar.edu.ungs.hangman.core.sessions.application.guess.SessionGuesser;
-import ar.edu.ungs.hangman.core.sessions.application.tries.SessionTryer;
-import ar.edu.ungs.hangman.core.sessions.domain.DomainSessionFinder;
-import ar.edu.ungs.hangman.core.sessions.domain.DomainSessionTryer;
-import ar.edu.ungs.hangman.core.sessions.domain.SessionRepository;
-import ar.edu.ungs.hangman.core.sessions.infrastructure.persistence.inmemory.InMemorySessionRepository;
-import ar.edu.ungs.hangman.core.words.domain.DomainWordRandomPicker;
-import ar.edu.ungs.hangman.core.words.domain.WordRepository;
-import ar.edu.ungs.hangman.core.words.infrastructure.persistence.inmemory.InMemoryWordRepository;
+import ar.edu.ungs.hangman.modules.sessions.application.create.SessionDefaultCreator;
+import ar.edu.ungs.hangman.modules.sessions.application.create.SessionGuessCreator;
+import ar.edu.ungs.hangman.modules.sessions.application.find.SessionFinder;
+import ar.edu.ungs.hangman.modules.sessions.application.guess.SessionGuesser;
+import ar.edu.ungs.hangman.modules.sessions.application.tries.SessionTryer;
+import ar.edu.ungs.hangman.modules.sessions.domain.DomainSessionFinder;
+import ar.edu.ungs.hangman.modules.sessions.domain.DomainSessionTryer;
+import ar.edu.ungs.hangman.modules.sessions.domain.SessionRepository;
+import ar.edu.ungs.hangman.modules.sessions.infrastructure.persistence.inmemory.InMemorySessionRepository;
+import ar.edu.ungs.hangman.modules.words.domain.DomainWordRandomPicker;
+import ar.edu.ungs.hangman.modules.words.domain.WordRepository;
+import ar.edu.ungs.hangman.modules.words.infrastructure.persistence.inmemory.InMemoryWordRepository;
 
 import java.awt.*;
 

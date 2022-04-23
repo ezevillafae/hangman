@@ -1,16 +1,13 @@
 package ar.edu.ungs.hangman.apps.swing.views;
 
-import ar.edu.ungs.hangman.core.sessions.application.create.SessionGuessCreator;
-import ar.edu.ungs.hangman.core.sessions.application.guess.SessionGuesser;
-import ar.edu.ungs.hangman.core.sessions.domain.SessionFinished;
+import ar.edu.ungs.hangman.modules.sessions.application.create.SessionGuessCreator;
+import ar.edu.ungs.hangman.modules.sessions.application.guess.SessionGuesser;
+import ar.edu.ungs.hangman.modules.sessions.domain.SessionFinished;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.io.File;
-import java.io.IOException;
 import java.util.Objects;
 
 public final class GuesserView extends View {
